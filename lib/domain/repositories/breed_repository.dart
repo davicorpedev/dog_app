@@ -1,6 +1,6 @@
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/core/network/network_info.dart';
-import 'package:dog_app/data/datasources/breed_datasource.dart';
+import 'package:dog_app/data/data_source/breed_data_source.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/breed_data.dart';

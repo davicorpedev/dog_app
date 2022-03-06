@@ -15,7 +15,11 @@ class DogDataSource {
     final response = await _client.get(
       Uri.https(
         url,
-        '/$version/images/search?limit=30&breed_id=$breedID',
+        '/$version/images/search',
+        {
+          'limit': '30',
+          'breed_id': '$breedID',
+        },
       ),
       headers: {'x-api-key': apiKey},
     );

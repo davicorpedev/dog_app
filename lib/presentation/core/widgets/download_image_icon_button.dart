@@ -38,6 +38,7 @@ class _DownloadImageIconButtonState extends State<DownloadImageIconButton> {
         }
         return IconButton(
           icon: const Icon(Icons.file_download),
+          tooltip: 'Click here to download this image',
           onPressed: () {
             cubit.downloadImage(widget.url);
           },

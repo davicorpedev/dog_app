@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 abstract class Breed extends Equatable {
   final int id;
   final String name;
-  final String temperament;
+  final String? temperament;
   final String lifeSpan;
   final String? origin;
 

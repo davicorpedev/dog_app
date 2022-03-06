@@ -4,9 +4,9 @@ class DogBreedModel extends DogBreed {
   const DogBreedModel({
     required int id,
     required String name,
-    required String temperament,
+    required String? temperament,
     required String lifeSpan,
-    required String origin,
+    required String? origin,
   }) : super(
           id: id,
           name: name,

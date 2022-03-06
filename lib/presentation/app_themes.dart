@@ -8,6 +8,9 @@ class AppThemes {
     primaryColor: const Color(0xFFf0e4b1),
     primaryColorDark: const Color(0xFFceaf67),
     primaryColorLight: const Color(0xFFf9eed9),
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      secondary: const Color(0xFF5a3a1a),
+    ),
     disabledColor: const Color(0xFFBCBCBC),
     scaffoldBackgroundColor: const Color(0xFFf9eed9),
     dialogBackgroundColor: const Color(0xFFf9eed9),
@@ -39,8 +42,6 @@ class AppThemes {
       ),
     ),
     iconTheme: const IconThemeData(color: Color(0xFF5a3a1a), size: 20),
-    //accentIconTheme: IconThemeData(color: const Color(0xFFFFEFFA), size: 16),
-    //chipTheme: ChipThemeData(),
     cardTheme: CardTheme(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
@@ -51,6 +52,9 @@ class AppThemes {
         color: Color(0xFF5a3a1a),
       ),
       headline6: TextStyle(
+        color: Color(0xFF5a3a1a),
+      ),
+      headline3: TextStyle(
         color: Color(0xFF5a3a1a),
       ),
       subtitle1: TextStyle(

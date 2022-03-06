@@ -20,20 +20,25 @@ class DogByBreedPage extends StatelessWidget {
           SliverToBoxAdapter(
             child: BreedInfo(breed: breed),
           ),
-          SliverToBoxAdapter(
-            child: BlocProvider(
-              create: (_) =>
-                  sl<DogsByBreedBloc>()..add(GetDogsByBreed(breedId: breed.id)),
-              child: BlocBuilder<DogsByBreedBloc, DogsByBreedState>(
-                builder: (context, state) {
-                  if (state is Loaded) {
-                    return DogGrid(dogs: state.dogs);
-                  } else if (state is Error) {
-                    return Center(child: Text(state.message));
-                  }
-                  return const Center(child: CircularProgressIndicator());
-                },
-              ),
+          BlocProvider(
+            create: (_) =>
+                sl<DogsByBreedBloc>()..add(GetDogsByBreed(breedId: breed.id)),
+            child: BlocBuilder<DogsByBreedBloc, DogsByBreedState>(
+              builder: (context, state) {
+                if (state is Loaded) {
+                  return SliverToBoxAdapter(child: DogGrid(dogs: state.dogs));
+                } else if (state is Error) {
+                  return SliverFillRemaining(
+                    child: Center(
+                      child: Text(state.message),
+                    ),
+                  );
+                }
+
+                return const SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              },
             ),
           ),
         ],

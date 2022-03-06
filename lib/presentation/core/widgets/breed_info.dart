@@ -26,7 +26,7 @@ class BreedInfo extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Origin: ${breed.origin ?? ''}',
+              'Origin: ${breed.origin ?? 'Unknown'}',
               style: Theme.of(context).textTheme.bodyText2,
             ),
             const SizedBox(height: 8),

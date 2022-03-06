@@ -11,7 +11,7 @@ class DogGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(
-      crossAxisCount: 4,
+      crossAxisCount: 2,
       padding: const EdgeInsets.all(4),
       mainAxisSpacing: 0.0,
       crossAxisSpacing: 0.0,
@@ -19,7 +19,7 @@ class DogGrid extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
-        Dog dog = dogs[index];
+        final dog = dogs[index];
 
         return InkWell(
           onTap: () {

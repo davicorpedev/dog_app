@@ -22,6 +22,7 @@ class BreedPage extends StatelessWidget {
             actions: [
               IconButton(
                 icon: const Icon(Icons.home),
+                tooltip: 'Return to Home',
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -32,6 +33,7 @@ class BreedPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Click in a breed to see all the dogs of that breed',
@@ -42,19 +44,24 @@ class BreedPage extends StatelessWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: BlocProvider(
-              create: (_) => sl<BreedBloc>()..add(GetBreeds()),
-              child: BlocBuilder<BreedBloc, BreedState>(
-                builder: (context, state) {
-                  if (state is Loaded) {
-                    return BreedGrid(breeds: state.breeds);
-                  } else if (state is Error) {
-                    return Center(child: Text(state.message));
-                  }
-                  return const Center(child: CircularProgressIndicator());
-                },
-              ),
+          BlocProvider(
+            create: (_) => sl<BreedBloc>()..add(GetBreeds()),
+            child: BlocBuilder<BreedBloc, BreedState>(
+              builder: (context, state) {
+                if (state is Loaded) {
+                  return SliverToBoxAdapter(
+                    child: BreedGrid(breeds: state.breeds),
+                  );
+                } else if (state is Error) {
+                  return SliverFillRemaining(
+                    child: Center(child: Text(state.message)),
+                  );
+                }
+
+                return const SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              },
             ),
           )
         ],

@@ -38,6 +38,7 @@ class _RandomDogDetailPageState extends State<RandomDogDetailPage> {
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
+            tooltip: 'Click here to load a random dog',
             onPressed: () {
               bloc.add(GetRandomDog());
             },

@@ -4,9 +4,9 @@ class BreedDataModel extends BreedData {
   const BreedDataModel({
     required int id,
     required String name,
-    required String temperament,
+    required String? temperament,
     required String lifeSpan,
-    required String origin,
+    required String? origin,
     required String image,
   }) : super(
           id: id,
