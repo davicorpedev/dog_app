@@ -45,35 +45,40 @@ class _RandomDogDetailPageState extends State<RandomDogDetailPage> {
           ),
         ],
       ),
-      body: Center(
-        child: BlocBuilder<RandomDogBloc, RandomDogState>(
-          bloc: bloc,
-          builder: (context, state) {
-            if (state is Loaded) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Hero(
-                        tag: state.dog.id,
-                        child: Image.network(state.dog.url),
-                      ),
+      body: _buildBody(context),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return Center(
+      child: BlocBuilder<RandomDogBloc, RandomDogState>(
+        bloc: bloc,
+        builder: (context, state) {
+          if (state is Loaded) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Hero(
+                      tag: state.dog.id,
+                      child: Image.network(state.dog.url),
                     ),
-                    Column(
-                      children: state.dog.breeds
-                          .map((e) => BreedInfo(breed: e))
-                          .toList(),
-                    ),
-                  ],
-                ),
-              );
-            } else if (state is Error) {
-              return Center(child: Text(state.message));
-            }
-            return const Center(child: CircularProgressIndicator());
-          },
-        ),
+                  ),
+                  Column(
+                    children: state.dog.breeds
+                        .map((e) => BreedInfo(breed: e))
+                        .toList(),
+                  ),
+                ],
+              ),
+            );
+          } else if (state is Error) {
+            return Center(child: Text(state.message));
+          }
+
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }

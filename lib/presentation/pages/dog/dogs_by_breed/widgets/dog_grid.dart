@@ -1,7 +1,7 @@
+import 'package:dog_app/domain/entities/dog.dart';
+import 'package:dog_app/presentation/pages/dog/dogs_by_breed/widgets/dog_grid_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:dog_app/domain/entities/dog.dart';
-import 'package:dog_app/presentation/pages/dog/dog_detail/dog_detail_page.dart';
 
 class DogGrid extends StatelessWidget {
   final List<Dog> dogs;
@@ -19,27 +19,7 @@ class DogGrid extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
-        final dog = dogs[index];
-
-        return InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DogDetailPage(dog: dog)),
-            );
-          },
-          child: Card(
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(8),
-              ),
-              child: Hero(
-                tag: dog.id,
-                child: Image.network(dog.url),
-              ),
-            ),
-          ),
-        );
+        return DogGridCard(dog: dogs[index]);
       },
     );
   }
