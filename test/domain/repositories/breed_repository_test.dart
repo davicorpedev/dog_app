@@ -101,7 +101,7 @@ void main() {
 
           final result = await repository.getBreeds();
 
-          verifyNever(() => dataSource.getBreeds()).called(1);
+          verifyNever(() => dataSource.getBreeds()).called(0);
           expect(
             result,
             Result<List<BreedData>>.error(NetworkFailure()),

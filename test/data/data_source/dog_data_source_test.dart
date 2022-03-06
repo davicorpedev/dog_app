@@ -74,7 +74,11 @@ void main() {
           () => client.get(
             Uri.https(
               url,
-              '/$version/images/search?limit=30&breed_id=$tBreedID',
+              '/$version/images/search',
+              {
+                'limit': '30',
+                'breed_id': '$tBreedID',
+              },
             ),
             headers: {'x-api-key': apiKey},
           ),

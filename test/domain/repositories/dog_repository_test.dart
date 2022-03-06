@@ -105,7 +105,7 @@ void main() {
 
         final result = await repository.getDogsByBreed(tBreedId);
 
-        verifyNever(() => dataSource.getDogsByBreed(any())).called(1);
+        verifyNever(() => dataSource.getDogsByBreed(any())).called(0);
         expect(
           result,
           Result<List<Dog>>.error(NetworkFailure()),
