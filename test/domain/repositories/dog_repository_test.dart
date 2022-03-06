@@ -186,6 +186,7 @@ void main() {
 
           final result = await repository.getRandomDog();
 
+          verifyNever(() => dataSource.getRandomDog()).called(0);
           expect(
             result,
             Result<Dog>.error(NetworkFailure()),
