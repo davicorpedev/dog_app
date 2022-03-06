@@ -106,7 +106,7 @@ class WelcomePage extends StatelessWidget {
   }
 
   void _launchURL() async {
-    const url = 'https://thedogapi.com/';
+    const url = 'https://thedogapi.com';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
