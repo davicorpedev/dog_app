@@ -1,0 +1,27 @@
+{
+  "breeds": [
+    {
+      "bred_for": "test",
+      "breed_group": "test",
+      "country_code": "test",
+      "height": {
+        "imperial": "test",
+        "metric": "test"
+      },
+      "id": 1,
+      "life_span": "test",
+      "name": "test",
+      "reference_image_id": "test",
+      "origin": "test",
+      "temperament": "test",
+      "weight": {
+        "imperial": "test",
+        "metric": "test"
+      }
+    }
+  ],
+  "height": 1,
+  "id": "test",
+  "url": "test",
+  "width": 1
+}
