@@ -5,7 +5,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:dog_app/application/breed/breed_bloc.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
-import 'package:dog_app/domain/entities/breed_data.dart';
+import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
 
 class MockBreedRepository extends Mock implements BreedRepository {}
@@ -27,7 +27,7 @@ void main() {
 
   group('GetBreeds', () {
     const tBreedList = [
-      BreedData(
+      BreedInfo(
         image: 'test',
         id: 1,
         name: 'test',
@@ -41,7 +41,7 @@ void main() {
       'should get the data from the repository',
       setUp: () {
         when(() => repository.getBreeds()).thenAnswer(
-          (_) async => const Result<List<BreedData>>.success(tBreedList),
+          (_) async => const Result<List<BreedInfo>>.success(tBreedList),
         );
       },
       build: () => BreedBloc(repository: repository),
@@ -55,7 +55,7 @@ void main() {
       'should emit [Loading, Loaded] when the request has succeded',
       setUp: () {
         when(() => repository.getBreeds()).thenAnswer(
-          (_) async => const Result<List<BreedData>>.success(tBreedList),
+          (_) async => const Result<List<BreedInfo>>.success(tBreedList),
         );
       },
       build: () => BreedBloc(repository: repository),
@@ -70,7 +70,7 @@ void main() {
       'should emit [Loading, Loaded] when the request has failed',
       setUp: () {
         when(() => repository.getBreeds()).thenAnswer(
-          (_) async => Result<List<BreedData>>.error(ServerFailure()),
+          (_) async => Result<List<BreedInfo>>.error(ServerFailure()),
         );
       },
       build: () => BreedBloc(repository: repository),

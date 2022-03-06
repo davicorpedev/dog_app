@@ -2,11 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:dog_app/data/core/error/exceptions.dart';
 
-import 'package:dog_app/data/data_source/breed_data_source.dart';
-import 'package:dog_app/data/models/breed_data_model.dart';
+import 'package:dog_app/data/datasources/breed_data_source.dart';
+import 'package:dog_app/data/models/breed_info_model.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
-import 'package:dog_app/domain/entities/breed_data.dart';
+import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
 
 import '../utils/mock_network_info.dart';
@@ -31,7 +31,7 @@ void main() {
     'getBreeds',
     () {
       const tBreedModelList = [
-        BreedDataModel(
+        BreedInfoModel(
           id: 1,
           name: 'test',
           temperament: 'test',
@@ -41,7 +41,7 @@ void main() {
         ),
       ];
 
-      List<BreedData> tBreedList = tBreedModelList;
+      List<BreedInfo> tBreedList = tBreedModelList;
 
       group(
         'device is online',
@@ -72,7 +72,7 @@ void main() {
           verify(() => dataSource.getBreeds()).called(1);
           expect(
             result,
-            Result<List<BreedData>>.success(tBreedList),
+            Result<List<BreedInfo>>.success(tBreedList),
           );
         },
       );
@@ -89,7 +89,7 @@ void main() {
 
           expect(
             result,
-            Result<List<BreedData>>.error(ServerFailure()),
+            Result<List<BreedInfo>>.error(ServerFailure()),
           );
         },
       );
@@ -104,7 +104,7 @@ void main() {
           verifyNever(() => dataSource.getBreeds()).called(0);
           expect(
             result,
-            Result<List<BreedData>>.error(NetworkFailure()),
+            Result<List<BreedInfo>>.error(NetworkFailure()),
           );
         },
       );

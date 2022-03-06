@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:dog_app/data/core/error/exceptions.dart';
-import 'package:dog_app/data/models/breed_data_model.dart';
+import 'package:dog_app/data/models/breed_info_model.dart';
 
 import 'package:dog_app/server_config.dart';
 
@@ -11,7 +11,7 @@ class BreedDataSource {
 
   BreedDataSource({required http.Client client}) : _client = client;
 
-  Future<List<BreedDataModel>> getBreeds() async {
+  Future<List<BreedInfoModel>> getBreeds() async {
     final response = await _client.get(
       Uri.https(url, '/$version/breeds'),
       headers: {'x-api-key': apiKey},
@@ -21,7 +21,7 @@ class BreedDataSource {
       final body = json.decode(response.body);
 
       return body
-          .map<BreedDataModel>((breed) => BreedDataModel.fromJson(breed))
+          .map<BreedInfoModel>((breed) => BreedInfoModel.fromJson(breed))
           .toList();
     } else {
       throw ServerException();

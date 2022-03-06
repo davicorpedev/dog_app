@@ -1,9 +1,9 @@
 import 'package:dog_app/domain/core/entitites/breed.dart';
 
-class BreedData extends Breed {
+class BreedInfo extends Breed {
   final String image;
 
-  const BreedData({
+  const BreedInfo({
     required this.image,
     required int id,
     required String name,

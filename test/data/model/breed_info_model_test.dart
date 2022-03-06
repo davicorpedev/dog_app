@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dog_app/data/models/breed_data_model.dart';
-import 'package:dog_app/domain/entities/breed_data.dart';
+import 'package:dog_app/data/models/breed_info_model.dart';
+import 'package:dog_app/domain/entities/breed_info.dart';
 
 import '../../fixtures/fixture_reader.dart';
 
 void main() {
-  const tBreedModel = BreedDataModel(
+  const tBreedModel = BreedInfoModel(
     id: 1,
     name: 'test',
     temperament: 'test',
@@ -19,7 +19,7 @@ void main() {
   test(
     'should be a subclass of Breed entity',
     () async {
-      expect(tBreedModel, isA<BreedData>());
+      expect(tBreedModel, isA<BreedInfo>());
     },
   );
 
@@ -29,7 +29,7 @@ void main() {
       () async {
         final Map<String, dynamic> jsonMap = json.decode(fixture('breed.json'));
 
-        final result = BreedDataModel.fromJson(jsonMap);
+        final result = BreedInfoModel.fromJson(jsonMap);
 
         expect(result, tBreedModel);
       },

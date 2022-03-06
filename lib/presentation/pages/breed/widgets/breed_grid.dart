@@ -1,10 +1,10 @@
-import 'package:dog_app/domain/entities/breed_data.dart';
+import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/presentation/pages/breed/widgets/breed_grid_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class BreedGrid extends StatelessWidget {
-  final List<BreedData> breeds;
+  final List<BreedInfo> breeds;
 
   const BreedGrid({Key? key, required this.breeds}) : super(key: key);
 

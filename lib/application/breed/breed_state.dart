@@ -10,7 +10,7 @@ class Empty extends BreedState {}
 class Loading extends BreedState {}
 
 class Loaded extends BreedState {
-  final List<BreedData> breeds;
+  final List<BreedInfo> breeds;
 
   Loaded({required this.breeds});
 

@@ -1,9 +1,9 @@
-import 'package:dog_app/domain/entities/breed_data.dart';
+import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/presentation/pages/dog/dogs_by_breed/dogs_by_breed_page.dart';
 import 'package:flutter/material.dart';
 
 class BreedGridCard extends StatelessWidget {
-  final BreedData breed;
+  final BreedInfo breed;
 
   const BreedGridCard({Key? key, required this.breed}) : super(key: key);
 
