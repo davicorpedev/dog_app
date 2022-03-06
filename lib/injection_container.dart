@@ -3,7 +3,7 @@ import 'package:dog_app/application/breed/breed_bloc.dart';
 import 'package:dog_app/application/dog/dogs_by_breed/dogs_by_breed_bloc.dart';
 import 'package:dog_app/application/dog/random_dog/random_dog_bloc.dart';
 import 'package:dog_app/application/download_image/download_image_cubit.dart';
-import 'package:dog_app/data/core/network/network_info.dart';
+import 'package:dog_app/domain/core/utils/network_info.dart';
 import 'package:dog_app/data/data_source/breed_data_source.dart';
 import 'package:dog_app/data/data_source/dog_data_source.dart';
 import 'package:dog_app/domain/core/utils/dog_image_downloader.dart';

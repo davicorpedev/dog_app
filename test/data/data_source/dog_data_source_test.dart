@@ -7,7 +7,7 @@ import 'package:dog_app/data/models/dog_breed_model.dart';
 import 'package:dog_app/data/models/dog_model.dart';
 import 'package:dog_app/server_config.dart';
 import '../../fixtures/fixture_reader.dart';
-import '../core/mock_http_client.dart';
+import '../utils/mock_http_client.dart';
 
 void main() {
   late MockHttpClient client;

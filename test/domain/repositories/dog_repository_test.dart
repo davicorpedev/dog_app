@@ -9,7 +9,7 @@ import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
 
-import '../core/mock_network_info.dart';
+import '../utils/mock_network_info.dart';
 
 class MockDogDataSource extends Mock implements DogDataSource {}
 
