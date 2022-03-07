@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_test/flutter_test.dart';
 import 'package:dog_app/data/models/breed_info_model.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import '../../fixtures/fixture_reader.dart';
 

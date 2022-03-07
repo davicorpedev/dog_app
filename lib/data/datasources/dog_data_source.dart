@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/models/dog_model.dart';
-
 import 'package:dog_app/server_config.dart';
+import 'package:http/http.dart' as http;
 
 class DogDataSource {
   final http.Client _client;

@@ -1,5 +1,3 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
 import 'package:dog_app/data/models/dog_breed_model.dart';
@@ -8,6 +6,8 @@ import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../utils/mock_network_info.dart';
 

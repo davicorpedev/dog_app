@@ -1,11 +1,10 @@
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:mocktail/mocktail.dart';
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/breed_data_source.dart';
-import 'package:http/http.dart' as http;
 import 'package:dog_app/data/models/breed_info_model.dart';
 import 'package:dog_app/server_config.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:mocktail/mocktail.dart';
 
 import '../../fixtures/fixture_reader.dart';
 import '../utils/mock_http_client.dart';

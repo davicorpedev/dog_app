@@ -1,13 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
-
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:mocktail/mocktail.dart';
 import 'package:dog_app/application/dog/random_dog/random_dog_bloc.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
+import 'package:dog_app/domain/entities/dog_breed.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 class MockDogRepository extends Mock implements DogRepository {}
 

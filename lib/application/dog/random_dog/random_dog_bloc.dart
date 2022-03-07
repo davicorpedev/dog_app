@@ -1,13 +1,10 @@
 import 'package:bloc/bloc.dart';
-
-import 'package:equatable/equatable.dart';
-
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
+import 'package:equatable/equatable.dart';
 
 part 'random_dog_event.dart';
-
 part 'random_dog_state.dart';
 
 class RandomDogBloc extends Bloc<RandomDogEvent, RandomDogState> {

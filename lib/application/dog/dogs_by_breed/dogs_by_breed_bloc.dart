@@ -1,13 +1,10 @@
 import 'package:bloc/bloc.dart';
-
-import 'package:equatable/equatable.dart';
-
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
+import 'package:equatable/equatable.dart';
 
 part 'dogs_by_breed_event.dart';
-
 part 'dogs_by_breed_state.dart';
 
 class DogsByBreedBloc extends Bloc<DogsByBreedEvent, DogsByBreedState> {

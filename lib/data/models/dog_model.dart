@@ -1,5 +1,6 @@
 import 'package:dog_app/data/models/dog_breed_model.dart';
 import 'package:dog_app/domain/entities/dog.dart';
+import 'package:dog_app/domain/entities/dog_breed.dart';
 
 class DogModel extends Dog {
   const DogModel({

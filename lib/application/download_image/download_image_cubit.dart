@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:dog_app/domain/repositories/url_downloader_repository.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:dog_app/domain/repositories/url_downloader_repository.dart';
 part 'download_image_state.dart';
 
 class DownloadImageCubit extends Cubit<DownloadImageState> {

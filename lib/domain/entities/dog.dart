@@ -1,6 +1,5 @@
+import 'package:dog_app/domain/entities/dog_breed.dart';
 import 'package:equatable/equatable.dart';
-
-import 'package:dog_app/domain/core/entitites/breed.dart';
 
 class Dog extends Equatable {
   final String id;
@@ -15,20 +14,4 @@ class Dog extends Equatable {
 
   @override
   List<Object> get props => [id, url, breeds];
-}
-
-class DogBreed extends Breed {
-  const DogBreed({
-    required int id,
-    required String name,
-    required String? temperament,
-    required String lifeSpan,
-    required String? origin,
-  }) : super(
-          id: id,
-          name: name,
-          temperament: temperament,
-          lifeSpan: lifeSpan,
-          origin: origin,
-        );
 }
