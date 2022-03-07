@@ -25,11 +25,11 @@ class BreedBloc extends Bloc<BreedEvent, BreedState> {
 
     final result = await _repository.getBreeds();
 
-    await result.when(
-      success: (breeds) async {
+    result.when(
+      success: (breeds) {
         emit(Loaded(breeds: breeds));
       },
-      error: (failure) async {
+      error: (failure) {
         emit(Error(message: mapFailureToMessage(failure)));
       },
     );

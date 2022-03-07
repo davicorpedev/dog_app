@@ -27,11 +27,11 @@ class RandomDogBloc extends Bloc<RandomDogEvent, RandomDogState> {
 
     final result = await _repository.getRandomDog();
 
-    await result.when(
-      success: (dog) async {
+    result.when(
+      success: (dog) {
         emit(Loaded(dog: dog));
       },
-      error: (failure) async {
+      error: (failure) {
         emit(Error(message: mapFailureToMessage(failure)));
       },
     );
