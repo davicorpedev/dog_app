@@ -1,4 +1,5 @@
 import 'package:dog_app/domain/entities/breed_info.dart';
+import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
 import 'package:dog_app/presentation/pages/dog/dogs_by_breed/dogs_by_breed_page.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class BreedGridCard extends StatelessWidget {
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(8),
               ),
-              child: Image.network(breed.image),
+              child: CustomCachedNetworkImage(imageURL: breed.image),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

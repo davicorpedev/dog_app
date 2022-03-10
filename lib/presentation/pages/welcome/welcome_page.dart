@@ -1,3 +1,4 @@
+import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:dog_app/presentation/core/icon/paw_icons.dart';
@@ -39,10 +40,13 @@ class WelcomePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-          child: Image.network(
-            'https://cdn2.thedogapi.com/logos/wave-square_256.png',
-            scale: 1.8,
+        const Center(
+          child: SizedBox(
+            width: 160,
+            height: 160,
+            child: CustomCachedNetworkImage(
+              imageURL: 'https://cdn2.thedogapi.com/logos/wave-square_256.png',
+            ),
           ),
         ),
         const SizedBox(height: 16),

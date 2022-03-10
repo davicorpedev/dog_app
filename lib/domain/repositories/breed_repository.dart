@@ -15,10 +15,22 @@ class BreedRepository {
   })  : _networkInfo = networkInfo,
         _dataSource = dataSource;
 
+  List<BreedInfo> _breeds = [];
+
   Future<Result<List<BreedInfo>>> getBreeds() async {
+    if (_breeds.isEmpty) {
+      return await _getBreedsFromServer();
+    }
+
+    return Result.success(_breeds);
+  }
+
+  Future<Result<List<BreedInfo>>> _getBreedsFromServer() async {
     if (await _networkInfo.isConnected) {
       try {
         final result = await _dataSource.getBreeds();
+
+        _breeds = result;
 
         return Result.success(result);
       } on ServerException {
