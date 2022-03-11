@@ -1,52 +1,33 @@
 import 'dart:convert';
 
-import 'package:dog_app/data/core/error/exceptions.dart';
+import 'package:dog_app/data/core/client/api_client.dart';
+
 import 'package:dog_app/data/models/dog_model.dart';
-import 'package:dog_app/server_config.dart';
-import 'package:http/http.dart' as http;
 
 class DogDataSource {
-  final http.Client _client;
+  final ApiClient _client;
 
-  DogDataSource({required http.Client client}) : _client = client;
+  DogDataSource({required ApiClient client}) : _client = client;
 
   Future<List<DogModel>> getDogsByBreed(int breedID) async {
     final response = await _client.get(
-      Uri.https(
-        url,
-        '/$version/images/search',
-        {
-          'limit': '30',
-          'breed_id': '$breedID',
-        },
-      ),
-      headers: {'x-api-key': apiKey},
+      path: 'images/search',
+      queryParameters: {
+        'limit': '30',
+        'breed_id': '$breedID',
+      },
     );
 
-    if (response.statusCode == 200) {
-      final body = json.decode(response.body);
+    final body = json.decode(response.body);
 
-      return body.map<DogModel>((dog) => DogModel.fromJson(dog)).toList();
-    } else {
-      throw ServerException();
-    }
+    return body.map<DogModel>((dog) => DogModel.fromJson(dog)).toList();
   }
 
   Future<DogModel> getRandomDog() async {
-    final response = await _client.get(
-      Uri.https(
-        url,
-        '/$version/images/search',
-      ),
-      headers: {'x-api-key': apiKey},
-    );
+    final response = await _client.get(path: 'images/search');
 
-    if (response.statusCode == 200) {
-      final body = json.decode(response.body);
+    final body = json.decode(response.body);
 
-      return DogModel.fromJson(body.first);
-    } else {
-      throw ServerException();
-    }
+    return DogModel.fromJson(body.first);
   }
 }
