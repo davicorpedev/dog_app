@@ -1,25 +1,21 @@
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/breed_data_source.dart';
 import 'package:dog_app/data/models/breed_info_model.dart';
-import 'package:dog_app/server_config.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../utils/mock_http_client.dart';
+import '../utils/mock_api_client.dart';
 
 void main() {
-  late MockHttpClient mockHttpClient;
+  late MockApiClient mockHttpClient;
   late BreedDataSource dataSource;
 
   setUp(() {
-    mockHttpClient = MockHttpClient();
+    mockHttpClient = MockApiClient();
     dataSource = BreedDataSource(client: mockHttpClient);
-  });
-
-  setUpAll(() {
-    registerFallbackValue(Uri());
   });
 
   group('getBreeds', () {
@@ -36,10 +32,7 @@ void main() {
 
     void mockGetBreedsSuccess() {
       when(
-        () => mockHttpClient.get(
-          any(),
-          headers: any(named: 'headers'),
-        ),
+        () => mockHttpClient.get(path: any(named: 'path')),
       ).thenAnswer(
         (_) async => http.Response(fixture('breed_list.json'), 200),
       );
@@ -47,13 +40,8 @@ void main() {
 
     void mockGetBreedsError() {
       when(
-        () => mockHttpClient.get(
-          any(),
-          headers: any(named: 'headers'),
-        ),
-      ).thenAnswer(
-        (_) async => http.Response('Something went wrong', 404),
-      );
+        () => mockHttpClient.get(path: any(named: 'path')),
+      ).thenThrow(ServerException());
     }
 
     test(
@@ -64,10 +52,7 @@ void main() {
         dataSource.getBreeds();
 
         verify(
-          () => mockHttpClient.get(
-            Uri.https(url, '/$version/breeds'),
-            headers: {'x-api-key': apiKey},
-          ),
+          () => mockHttpClient.get(path: 'breeds'),
         ).called(1);
       },
     );

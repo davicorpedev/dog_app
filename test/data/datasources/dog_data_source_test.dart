@@ -2,20 +2,19 @@ import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
 import 'package:dog_app/data/models/dog_breed_model.dart';
 import 'package:dog_app/data/models/dog_model.dart';
-import 'package:dog_app/server_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../utils/mock_http_client.dart';
+import '../utils/mock_api_client.dart';
 
 void main() {
-  late MockHttpClient client;
+  late MockApiClient client;
   late DogDataSource dataSource;
 
   setUp(() {
-    client = MockHttpClient();
+    client = MockApiClient();
     dataSource = DogDataSource(client: client);
   });
 
@@ -45,8 +44,8 @@ void main() {
     void mockGetDogsByBreedSuccess() {
       when(
         () => client.get(
-          any(),
-          headers: any(named: 'headers'),
+          path: any(named: 'path'),
+          queryParameters: any(named: 'queryParameters'),
         ),
       ).thenAnswer(
         (_) async => http.Response(fixture('dog_list.json'), 200),
@@ -56,12 +55,10 @@ void main() {
     void mockGetDogsByBreedError() {
       when(
         () => client.get(
-          any(),
-          headers: any(named: 'headers'),
+          path: any(named: 'path'),
+          queryParameters: any(named: 'queryParameters'),
         ),
-      ).thenAnswer(
-        (_) async => http.Response('Something went wrong', 404),
-      );
+      ).thenThrow(ServerException());
     }
 
     test(
@@ -73,15 +70,11 @@ void main() {
 
         verify(
           () => client.get(
-            Uri.https(
-              url,
-              '/$version/images/search',
-              {
-                'limit': '30',
-                'breed_id': '$tBreedID',
-              },
-            ),
-            headers: {'x-api-key': apiKey},
+            path: 'images/search',
+            queryParameters: {
+              'limit': '30',
+              'breed_id': '$tBreedID',
+            },
           ),
         ).called(1);
       },
@@ -127,10 +120,7 @@ void main() {
 
     void mockGetRandomDogSuccess() {
       when(
-        () => client.get(
-          any(),
-          headers: any(named: 'headers'),
-        ),
+        () => client.get(path: any(named: 'path')),
       ).thenAnswer(
         (_) async => http.Response(fixture('dog_list.json'), 200),
       );
@@ -138,13 +128,8 @@ void main() {
 
     void mockGetRandomDogError() {
       when(
-        () => client.get(
-          any(),
-          headers: any(named: 'headers'),
-        ),
-      ).thenAnswer(
-        (_) async => http.Response('Something went wrong', 404),
-      );
+        () => client.get(path: any(named: 'path')),
+      ).thenThrow(ServerException());
     }
 
     test(
@@ -155,13 +140,7 @@ void main() {
         dataSource.getRandomDog();
 
         verify(
-          () => client.get(
-            Uri.https(
-              url,
-              '/$version/images/search',
-            ),
-            headers: {'x-api-key': apiKey},
-          ),
+          () => client.get(path: 'images/search'),
         ).called(1);
       },
     );

@@ -15,14 +15,14 @@ class BreedRepository {
   })  : _networkInfo = networkInfo,
         _dataSource = dataSource;
 
-  List<BreedInfo> _breeds = [];
+  List<BreedInfo> _cachedBreeds = [];
 
   Future<Result<List<BreedInfo>>> getBreeds() async {
-    if (_breeds.isEmpty) {
+    if (_cachedBreeds.isEmpty) {
       return await _getBreedsFromServer();
     }
 
-    return Result.success(_breeds);
+    return Result.success(_cachedBreeds);
   }
 
   Future<Result<List<BreedInfo>>> _getBreedsFromServer() async {
@@ -30,7 +30,7 @@ class BreedRepository {
       try {
         final result = await _dataSource.getBreeds();
 
-        _breeds = result;
+        _cacheBreeds(result);
 
         return Result.success(result);
       } on ServerException {
@@ -39,5 +39,9 @@ class BreedRepository {
     } else {
       return Result.error(NetworkFailure());
     }
+  }
+
+  void _cacheBreeds(List<BreedInfo> breeds) {
+    _cachedBreeds = breeds;
   }
 }
