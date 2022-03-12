@@ -34,6 +34,8 @@ dependencies:
   # Bloc for state management
   flutter_bloc: ^8.0.1
   bloc_test: ^9.0.3
+  # Provider for state management
+  provider: ^6.0.2
   # Value equality
   equatable: ^2.0.3
   # Remote API
@@ -49,6 +51,8 @@ dependencies:
   freezed_annotation: 
   # Images
   cached_network_image: ^3.2.0
+  # Configuration
+  global_configuration: ^2.0.0-nullsafety.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -108,6 +112,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  assets:
+  - config/
+
   fonts:
     - family: Montserrat
       fonts:

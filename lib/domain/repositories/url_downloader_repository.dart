@@ -6,8 +6,9 @@ import 'package:flutter/services.dart';
 class UrlDownloaderRepository {
   final DogImageDownloader _imageDownloader;
 
-  UrlDownloaderRepository(DogImageDownloader imageDownloader)
-      : _imageDownloader = imageDownloader;
+  UrlDownloaderRepository({
+    required DogImageDownloader imageDownloader,
+  }) : _imageDownloader = imageDownloader;
 
   Future<Result<bool>> download(String url) async {
     try {

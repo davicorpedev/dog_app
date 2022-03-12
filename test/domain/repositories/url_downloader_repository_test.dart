@@ -14,7 +14,7 @@ void main() {
 
   setUp(() {
     imageDownloader = MockDogImageDownloader();
-    repository = UrlDownloaderRepository(imageDownloader);
+    repository = UrlDownloaderRepository(imageDownloader: imageDownloader);
   });
 
   group(

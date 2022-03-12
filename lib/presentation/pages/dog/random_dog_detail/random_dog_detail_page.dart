@@ -1,5 +1,6 @@
 import 'package:dog_app/application/dog/random_dog/random_dog_bloc.dart';
-import 'package:dog_app/injection_container.dart';
+import 'package:dog_app/domain/repositories/dog_repository.dart';
+
 import 'package:dog_app/presentation/core/widgets/breed_info.dart';
 import 'package:dog_app/presentation/core/widgets/download_image_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -13,46 +14,38 @@ class RandomDogDetailPage extends StatefulWidget {
 }
 
 class _RandomDogDetailPageState extends State<RandomDogDetailPage> {
-  final bloc = sl<RandomDogBloc>();
-
-  @override
-  void initState() {
-    bloc.add(GetRandomDog());
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          BlocBuilder<RandomDogBloc, RandomDogState>(
-            bloc: bloc,
-            builder: (context, state) {
-              if (state is Loaded) {
-                return DownloadImageIconButton(url: state.dog.url);
-              }
-              return Container();
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            tooltip: 'Click here to load a random dog',
-            onPressed: () {
-              bloc.add(GetRandomDog());
-            },
-          ),
-        ],
+    return BlocProvider<RandomDogBloc>(
+      create: (context) => RandomDogBloc(
+        repository: RepositoryProvider.of<DogRepository>(context),
       ),
-      body: _buildBody(context),
+      child: BlocBuilder<RandomDogBloc, RandomDogState>(
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(
+              actions: [
+                if (state is Loaded)
+                  DownloadImageIconButton(url: state.dog.url),
+                IconButton(
+                  icon: const Icon(Icons.refresh),
+                  tooltip: 'Click here to load a random dog',
+                  onPressed: () {
+                    context.read<RandomDogBloc>().add(GetRandomDog());
+                  },
+                ),
+              ],
+            ),
+            body: _buildBody(context),
+          );
+        },
+      ),
     );
   }
 
   Widget _buildBody(BuildContext context) {
     return Center(
       child: BlocBuilder<RandomDogBloc, RandomDogState>(
-        bloc: bloc,
         builder: (context, state) {
           if (state is Loaded) {
             return SingleChildScrollView(

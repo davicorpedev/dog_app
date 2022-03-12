@@ -8,13 +8,17 @@ part 'dogs_by_breed_event.dart';
 part 'dogs_by_breed_state.dart';
 
 class DogsByBreedBloc extends Bloc<DogsByBreedEvent, DogsByBreedState> {
+  final int _breedId;
   final DogRepository _repository;
 
   DogsByBreedBloc({
+    required int breedId,
     required DogRepository repository,
   })  : _repository = repository,
+        _breedId = breedId,
         super(Empty()) {
     on<GetDogsByBreed>(_onGetDogsByBreed);
+    add(GetDogsByBreed(breedId: _breedId));
   }
 
   void _onGetDogsByBreed(
