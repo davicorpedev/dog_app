@@ -1,27 +1,33 @@
 part of 'random_dog_bloc.dart';
 
 abstract class RandomDogState extends Equatable {
+  const RandomDogState();
+
   @override
   List<Object> get props => [];
 }
 
-class Initial extends RandomDogState {}
+class RandomDogInitialState extends RandomDogState {
+  const RandomDogInitialState();
+}
 
-class Loading extends RandomDogState {}
+class RandomDogLoadingState extends RandomDogState {
+  const RandomDogLoadingState();
+}
 
-class Loaded extends RandomDogState {
+class RandomDogLoadedState extends RandomDogState {
   final Dog dog;
 
-  Loaded({required this.dog});
+  const RandomDogLoadedState({required this.dog});
 
   @override
   List<Object> get props => [dog];
 }
 
-class Error extends RandomDogState {
+class RandomDogErrorState extends RandomDogState {
   final String message;
 
-  Error({required this.message});
+  const RandomDogErrorState({required this.message});
 
   @override
   List<Object> get props => [message];

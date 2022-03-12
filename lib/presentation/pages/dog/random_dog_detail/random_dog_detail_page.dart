@@ -6,14 +6,9 @@ import 'package:dog_app/presentation/core/widgets/download_image_icon_button.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RandomDogDetailPage extends StatefulWidget {
+class RandomDogDetailPage extends StatelessWidget {
   const RandomDogDetailPage({Key? key}) : super(key: key);
 
-  @override
-  _RandomDogDetailPageState createState() => _RandomDogDetailPageState();
-}
-
-class _RandomDogDetailPageState extends State<RandomDogDetailPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RandomDogBloc>(
@@ -25,29 +20,34 @@ class _RandomDogDetailPageState extends State<RandomDogDetailPage> {
           return Scaffold(
             appBar: AppBar(
               actions: [
-                if (state is Loaded)
+                if (state is RandomDogLoadedState)
                   DownloadImageIconButton(url: state.dog.url),
                 IconButton(
                   icon: const Icon(Icons.refresh),
                   tooltip: 'Click here to load a random dog',
                   onPressed: () {
-                    context.read<RandomDogBloc>().add(GetRandomDog());
+                    context.read<RandomDogBloc>().add(GetRandomDogEvent());
                   },
                 ),
               ],
             ),
-            body: _buildBody(context),
+            body: const RandomDogDetailBody(),
           );
         },
       ),
     );
   }
+}
 
-  Widget _buildBody(BuildContext context) {
+class RandomDogDetailBody extends StatelessWidget {
+  const RandomDogDetailBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: BlocBuilder<RandomDogBloc, RandomDogState>(
         builder: (context, state) {
-          if (state is Loaded) {
+          if (state is RandomDogLoadedState) {
             return SingleChildScrollView(
               child: Column(
                 children: [
@@ -66,7 +66,7 @@ class _RandomDogDetailPageState extends State<RandomDogDetailPage> {
                 ],
               ),
             );
-          } else if (state is Error) {
+          } else if (state is RandomDogErrorState) {
             return Center(child: Text(state.message));
           }
 

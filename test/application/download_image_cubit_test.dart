@@ -20,7 +20,7 @@ void main() {
     'initial state should be Empty',
     build: () => DownloadImageCubit(repository: repository),
     verify: (bloc) {
-      expect(bloc.state, const Initial());
+      expect(bloc.state, const DownloadImageInitialState());
     },
   );
 
@@ -49,8 +49,8 @@ void main() {
       },
       act: (cubit) => cubit.downloadImage('url'),
       expect: () => [
-        const Loading(),
-        const Loaded(),
+        const DownloadImageLoadingState(),
+        const DownloadImageLoadedState(),
       ],
     );
 
@@ -64,8 +64,8 @@ void main() {
       },
       act: (cubit) => cubit.downloadImage('url'),
       expect: () => [
-        const Loading(),
-        const Error(),
+        const DownloadImageLoadingState(),
+        const DownloadImageErrorState(),
       ],
     );
   });

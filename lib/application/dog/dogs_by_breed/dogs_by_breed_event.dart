@@ -5,10 +5,10 @@ abstract class DogsByBreedEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetDogsByBreed extends DogsByBreedEvent {
+class GetDogsByBreedEvent extends DogsByBreedEvent {
   final int breedId;
 
-  GetDogsByBreed({required this.breedId});
+  GetDogsByBreedEvent({required this.breedId});
 
   @override
   List<Object> get props => [breedId];

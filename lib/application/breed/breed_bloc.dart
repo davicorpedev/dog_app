@@ -13,25 +13,25 @@ class BreedBloc extends Bloc<BreedEvent, BreedState> {
   BreedBloc({
     required BreedRepository repository,
   })  : _repository = repository,
-        super(Empty()) {
-    on<GetBreeds>(_onGetBreeds);
-    add(GetBreeds());
+        super(const BreedInitialState()) {
+    on<GetBreedsEvent>(_onGetBreeds);
+    add(GetBreedsEvent());
   }
 
   void _onGetBreeds(
-    GetBreeds event,
+    GetBreedsEvent event,
     Emitter<BreedState> emit,
   ) async {
-    emit(Loading());
+    emit(const BreedLoadingState());
 
     final result = await _repository.getBreeds();
 
     result.when(
       success: (breeds) {
-        emit(Loaded(breeds: breeds));
+        emit(BreedLoadedState(breeds: breeds));
       },
       error: (failure) {
-        emit(Error(message: mapFailureToMessage(failure)));
+        emit(BreedErrorState(message: mapFailureToMessage(failure)));
       },
     );
   }

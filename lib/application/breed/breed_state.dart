@@ -1,27 +1,33 @@
 part of 'breed_bloc.dart';
 
 abstract class BreedState extends Equatable {
+  const BreedState();
+
   @override
   List<Object> get props => [];
 }
 
-class Empty extends BreedState {}
+class BreedInitialState extends BreedState {
+  const BreedInitialState();
+}
 
-class Loading extends BreedState {}
+class BreedLoadingState extends BreedState {
+  const BreedLoadingState();
+}
 
-class Loaded extends BreedState {
+class BreedLoadedState extends BreedState {
   final List<BreedInfo> breeds;
 
-  Loaded({required this.breeds});
+  const BreedLoadedState({required this.breeds});
 
   @override
   List<Object> get props => [breeds];
 }
 
-class Error extends BreedState {
+class BreedErrorState extends BreedState {
   final String message;
 
-  Error({required this.message});
+  const BreedErrorState({required this.message});
 
   @override
   List<Object> get props => [message];

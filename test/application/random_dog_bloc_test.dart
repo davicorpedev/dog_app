@@ -54,8 +54,8 @@ void main() {
       },
       build: () => RandomDogBloc(repository: repository),
       expect: () => [
-        Loading(),
-        Loaded(dog: tDog),
+        const RandomDogLoadingState(),
+        const RandomDogLoadedState(dog: tDog),
       ],
     );
 
@@ -68,8 +68,8 @@ void main() {
       },
       build: () => RandomDogBloc(repository: repository),
       expect: () => [
-        Loading(),
-        Error(message: serverFailureMessage),
+        const RandomDogLoadingState(),
+        const RandomDogErrorState(message: serverFailureMessage),
       ],
     );
   });

@@ -13,25 +13,25 @@ class RandomDogBloc extends Bloc<RandomDogEvent, RandomDogState> {
   RandomDogBloc({
     required DogRepository repository,
   })  : _repository = repository,
-        super(Initial()) {
-    on<GetRandomDog>(_onGetRandomDog);
-    add(GetRandomDog());
+        super(const RandomDogInitialState()) {
+    on<GetRandomDogEvent>(_onGetRandomDog);
+    add(GetRandomDogEvent());
   }
 
   void _onGetRandomDog(
-    GetRandomDog event,
+    GetRandomDogEvent event,
     Emitter<RandomDogState> emit,
   ) async {
-    emit(Loading());
+    emit(const RandomDogLoadingState());
 
     final result = await _repository.getRandomDog();
 
     result.when(
       success: (dog) {
-        emit(Loaded(dog: dog));
+        emit(RandomDogLoadedState(dog: dog));
       },
       error: (failure) {
-        emit(Error(message: mapFailureToMessage(failure)));
+        emit(RandomDogErrorState(message: mapFailureToMessage(failure)));
       },
     );
   }

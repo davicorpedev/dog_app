@@ -1,6 +1,7 @@
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
 import 'package:dog_app/presentation/pages/dog/dog_detail/dog_detail_page.dart';
+import 'package:dog_app/presentation/utils/navigator.dart';
 import 'package:flutter/material.dart';
 
 class DogGridCard extends StatelessWidget {
@@ -14,9 +15,9 @@ class DogGridCard extends StatelessWidget {
       color: Theme.of(context).scaffoldBackgroundColor,
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => DogDetailPage(dog: dog)),
+          AppNavigator.navigateTo(
+            context: context,
+            page: DogDetailPage(dog: dog),
           );
         },
         child: ClipRRect(

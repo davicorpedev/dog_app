@@ -50,11 +50,11 @@ class BreedPage extends StatelessWidget {
             ),
             child: BlocBuilder<BreedBloc, BreedState>(
               builder: (context, state) {
-                if (state is Loaded) {
+                if (state is BreedLoadedState) {
                   return SliverToBoxAdapter(
                     child: BreedGrid(breeds: state.breeds),
                   );
-                } else if (state is Error) {
+                } else if (state is BreedErrorState) {
                   return SliverFillRemaining(
                     child: Center(child: Text(state.message)),
                   );
