@@ -16,14 +16,6 @@ void main() {
     repository = MockBreedRepository();
   });
 
-  blocTest<BreedBloc, BreedState>(
-    'initial state should be Empty',
-    build: () => BreedBloc(repository: repository),
-    verify: (bloc) {
-      expect(bloc.state, Empty());
-    },
-  );
-
   group('GetBreeds', () {
     const tBreedList = [
       BreedInfo(
@@ -44,7 +36,6 @@ void main() {
         );
       },
       build: () => BreedBloc(repository: repository),
-      act: (bloc) => bloc.add(GetBreeds()),
       verify: (bloc) {
         verify(() => repository.getBreeds()).called(1);
       },
@@ -58,7 +49,6 @@ void main() {
         );
       },
       build: () => BreedBloc(repository: repository),
-      act: (bloc) => bloc.add(GetBreeds()),
       expect: () => [
         Loading(),
         Loaded(breeds: tBreedList),
@@ -73,7 +63,6 @@ void main() {
         );
       },
       build: () => BreedBloc(repository: repository),
-      act: (bloc) => bloc.add(GetBreeds()),
       expect: () => [
         Loading(),
         Error(message: serverFailureMessage),

@@ -9,12 +9,12 @@ class DogDataSource {
 
   DogDataSource({required ApiClient client}) : _client = client;
 
-  Future<List<DogModel>> getDogsByBreed(int breedID) async {
+  Future<List<DogModel>> getDogsByBreed(int breedId) async {
     final response = await _client.get(
       path: 'images/search',
       queryParameters: {
         'limit': '30',
-        'breed_id': '$breedID',
+        'breed_id': '$breedId',
       },
     );
 

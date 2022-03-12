@@ -17,14 +17,6 @@ void main() {
     repository = MockDogRepository();
   });
 
-  blocTest<RandomDogBloc, RandomDogState>(
-    'initial state should be Empty',
-    build: () => RandomDogBloc(repository: repository),
-    verify: (bloc) {
-      expect(bloc.state, Initial());
-    },
-  );
-
   group('GetRandomDog', () {
     const tDog = Dog(
       id: 'test',
@@ -48,7 +40,6 @@ void main() {
         );
       },
       build: () => RandomDogBloc(repository: repository),
-      act: (bloc) => bloc.add(GetRandomDog()),
       verify: (bloc) {
         verify(() => repository.getRandomDog()).called(1);
       },
@@ -62,7 +53,6 @@ void main() {
         );
       },
       build: () => RandomDogBloc(repository: repository),
-      act: (bloc) => bloc.add(GetRandomDog()),
       expect: () => [
         Loading(),
         Loaded(dog: tDog),
@@ -77,7 +67,6 @@ void main() {
         );
       },
       build: () => RandomDogBloc(repository: repository),
-      act: (bloc) => bloc.add(GetRandomDog()),
       expect: () => [
         Loading(),
         Error(message: serverFailureMessage),

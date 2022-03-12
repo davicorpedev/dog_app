@@ -15,6 +15,7 @@ class BreedBloc extends Bloc<BreedEvent, BreedState> {
   })  : _repository = repository,
         super(Empty()) {
     on<GetBreeds>(_onGetBreeds);
+    add(GetBreeds());
   }
 
   void _onGetBreeds(

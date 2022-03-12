@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dog_app/application/breed/breed_bloc.dart';
-import 'package:dog_app/injection_container.dart';
+
 import 'package:dog_app/presentation/pages/breed/widgets/breed_grid.dart';
 
 class BreedPage extends StatelessWidget {
@@ -45,7 +45,9 @@ class BreedPage extends StatelessWidget {
             ),
           ),
           BlocProvider(
-            create: (_) => sl<BreedBloc>()..add(GetBreeds()),
+            create: (context) => BreedBloc(
+              repository: RepositoryProvider.of(context),
+            ),
             child: BlocBuilder<BreedBloc, BreedState>(
               builder: (context, state) {
                 if (state is Loaded) {

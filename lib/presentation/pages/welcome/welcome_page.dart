@@ -1,9 +1,9 @@
-import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:dog_app/presentation/core/icon/paw_icons.dart';
+import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
 import 'package:dog_app/presentation/pages/breed/breed_page.dart';
 import 'package:dog_app/presentation/pages/dog/random_dog_detail/random_dog_detail_page.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WelcomePage extends StatelessWidget {

@@ -17,17 +17,9 @@ void main() {
     repository = MockDogRepository();
   });
 
-  blocTest<DogsByBreedBloc, DogsByBreedState>(
-    'initial state should be Empty',
-    build: () => DogsByBreedBloc(repository: repository),
-    verify: (bloc) {
-      expect(bloc.state, Empty());
-    },
-  );
+  const tBreedId = 1;
 
   group('GetDogsByBreed', () {
-    const tBreedId = 1;
-
     const tDogList = [
       Dog(
         id: 'test',
@@ -51,8 +43,10 @@ void main() {
           (_) async => const Result<List<Dog>>.success(tDogList),
         );
       },
-      build: () => DogsByBreedBloc(repository: repository),
-      act: (bloc) => bloc.add(GetDogsByBreed(breedId: tBreedId)),
+      build: () => DogsByBreedBloc(
+        repository: repository,
+        breedId: tBreedId,
+      ),
       verify: (bloc) {
         verify(() => repository.getDogsByBreed(tBreedId)).called(1);
       },
@@ -65,8 +59,10 @@ void main() {
           (_) async => const Result<List<Dog>>.success(tDogList),
         );
       },
-      build: () => DogsByBreedBloc(repository: repository),
-      act: (bloc) => bloc.add(GetDogsByBreed(breedId: tBreedId)),
+      build: () => DogsByBreedBloc(
+        repository: repository,
+        breedId: tBreedId,
+      ),
       expect: () => [
         Loading(),
         Loaded(dogs: tDogList),
@@ -80,8 +76,10 @@ void main() {
           (_) async => Result<List<Dog>>.error(ServerFailure()),
         );
       },
-      build: () => DogsByBreedBloc(repository: repository),
-      act: (bloc) => bloc.add(GetDogsByBreed(breedId: tBreedId)),
+      build: () => DogsByBreedBloc(
+        repository: repository,
+        breedId: tBreedId,
+      ),
       expect: () => [
         Loading(),
         Error(message: serverFailureMessage),

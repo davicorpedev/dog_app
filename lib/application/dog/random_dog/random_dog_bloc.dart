@@ -10,10 +10,12 @@ part 'random_dog_state.dart';
 class RandomDogBloc extends Bloc<RandomDogEvent, RandomDogState> {
   final DogRepository _repository;
 
-  RandomDogBloc({required DogRepository repository})
-      : _repository = repository,
+  RandomDogBloc({
+    required DogRepository repository,
+  })  : _repository = repository,
         super(Initial()) {
     on<GetRandomDog>(_onGetRandomDog);
+    add(GetRandomDog());
   }
 
   void _onGetRandomDog(
