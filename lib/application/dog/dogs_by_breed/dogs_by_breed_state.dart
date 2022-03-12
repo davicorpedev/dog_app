@@ -1,27 +1,33 @@
 part of 'dogs_by_breed_bloc.dart';
 
 abstract class DogsByBreedState extends Equatable {
+  const DogsByBreedState();
+
   @override
   List<Object> get props => [];
 }
 
-class Empty extends DogsByBreedState {}
+class DogsByBreedInitialState extends DogsByBreedState {
+  const DogsByBreedInitialState();
+}
 
-class Loading extends DogsByBreedState {}
+class DogsByBreedLoadingState extends DogsByBreedState {
+  const DogsByBreedLoadingState();
+}
 
-class Loaded extends DogsByBreedState {
+class DogsByBreedLoadedState extends DogsByBreedState {
   final List<Dog> dogs;
 
-  Loaded({required this.dogs});
+  const DogsByBreedLoadedState({required this.dogs});
 
   @override
   List<Object> get props => [dogs];
 }
 
-class Error extends DogsByBreedState {
+class DogsByBreedErrorState extends DogsByBreedState {
   final String message;
 
-  Error({required this.message});
+  const DogsByBreedErrorState({required this.message});
 
   @override
   List<Object> get props => [message];

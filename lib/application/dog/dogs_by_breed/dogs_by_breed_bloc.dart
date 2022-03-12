@@ -16,25 +16,25 @@ class DogsByBreedBloc extends Bloc<DogsByBreedEvent, DogsByBreedState> {
     required DogRepository repository,
   })  : _repository = repository,
         _breedId = breedId,
-        super(Empty()) {
-    on<GetDogsByBreed>(_onGetDogsByBreed);
-    add(GetDogsByBreed(breedId: _breedId));
+        super(const DogsByBreedInitialState()) {
+    on<GetDogsByBreedEvent>(_onGetDogsByBreed);
+    add(GetDogsByBreedEvent(breedId: _breedId));
   }
 
   void _onGetDogsByBreed(
-    GetDogsByBreed event,
+    GetDogsByBreedEvent event,
     Emitter<DogsByBreedState> emit,
   ) async {
-    emit(Loading());
+    emit(const DogsByBreedLoadingState());
 
     final result = await _repository.getDogsByBreed(event.breedId);
 
     result.when(
       success: (dogs) {
-        emit(Loaded(dogs: dogs));
+        emit(DogsByBreedLoadedState(dogs: dogs));
       },
       error: (failure) {
-        emit(Error(message: mapFailureToMessage(failure)));
+        emit(DogsByBreedErrorState(message: mapFailureToMessage(failure)));
       },
     );
   }

@@ -7,18 +7,18 @@ abstract class DownloadImageState extends Equatable {
   List<Object> get props => [];
 }
 
-class Initial extends DownloadImageState {
-  const Initial();
+class DownloadImageInitialState extends DownloadImageState {
+  const DownloadImageInitialState();
 }
 
-class Loading extends DownloadImageState {
-  const Loading();
+class DownloadImageLoadingState extends DownloadImageState {
+  const DownloadImageLoadingState();
 }
 
-class Loaded extends DownloadImageState {
-  const Loaded();
+class DownloadImageLoadedState extends DownloadImageState {
+  const DownloadImageLoadedState();
 }
 
-class Error extends DownloadImageState {
-  const Error();
+class DownloadImageErrorState extends DownloadImageState {
+  const DownloadImageErrorState();
 }

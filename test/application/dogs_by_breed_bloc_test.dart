@@ -64,8 +64,8 @@ void main() {
         breedId: tBreedId,
       ),
       expect: () => [
-        Loading(),
-        Loaded(dogs: tDogList),
+        const DogsByBreedLoadingState(),
+        const DogsByBreedLoadedState(dogs: tDogList),
       ],
     );
 
@@ -81,8 +81,8 @@ void main() {
         breedId: tBreedId,
       ),
       expect: () => [
-        Loading(),
-        Error(message: serverFailureMessage),
+        const DogsByBreedLoadingState(),
+        const DogsByBreedErrorState(message: serverFailureMessage),
       ],
     );
   });

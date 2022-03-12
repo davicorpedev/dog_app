@@ -27,9 +27,9 @@ class DogByBreedPage extends StatelessWidget {
             ),
             child: BlocBuilder<DogsByBreedBloc, DogsByBreedState>(
               builder: (context, state) {
-                if (state is Loaded) {
+                if (state is DogsByBreedLoadedState) {
                   return SliverToBoxAdapter(child: DogGrid(dogs: state.dogs));
-                } else if (state is Error) {
+                } else if (state is DogsByBreedErrorState) {
                   return SliverFillRemaining(
                     child: Center(
                       child: Text(state.message),

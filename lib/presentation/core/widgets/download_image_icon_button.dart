@@ -17,18 +17,20 @@ class DownloadImageIconButton extends StatelessWidget {
       ),
       child: BlocConsumer<DownloadImageCubit, DownloadImageState>(
         listener: (context, state) {
-          if (state is Loaded) {
+          if (state is DownloadImageLoadedState) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Image downloaded')),
             );
-          } else if (state is Error) {
+          } else if (state is DownloadImageErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Error')),
+              const SnackBar(
+                content: Text('Error while downloading the image'),
+              ),
             );
           }
         },
         builder: (context, state) {
-          if (state is Loading) {
+          if (state is DownloadImageLoadingState) {
             return const Center(child: CircularProgressIndicator());
           }
 

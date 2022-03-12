@@ -50,8 +50,8 @@ void main() {
       },
       build: () => BreedBloc(repository: repository),
       expect: () => [
-        Loading(),
-        Loaded(breeds: tBreedList),
+        const BreedLoadingState(),
+        const BreedLoadedState(breeds: tBreedList),
       ],
     );
 
@@ -64,8 +64,8 @@ void main() {
       },
       build: () => BreedBloc(repository: repository),
       expect: () => [
-        Loading(),
-        Error(message: serverFailureMessage),
+        const BreedLoadingState(),
+        const BreedErrorState(message: serverFailureMessage),
       ],
     );
   });

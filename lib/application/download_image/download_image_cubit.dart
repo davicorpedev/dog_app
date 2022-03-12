@@ -10,19 +10,19 @@ class DownloadImageCubit extends Cubit<DownloadImageState> {
   DownloadImageCubit({
     required UrlDownloaderRepository repository,
   })  : _repository = repository,
-        super(const Initial());
+        super(const DownloadImageInitialState());
 
   Future<void> downloadImage(String url) async {
-    emit(const Loading());
+    emit(const DownloadImageLoadingState());
 
     final result = await _repository.download(url);
 
     result.when(
       error: (error) {
-        emit(const Error());
+        emit(const DownloadImageErrorState());
       },
       success: (_) {
-        emit(const Loaded());
+        emit(const DownloadImageLoadedState());
       },
     );
   }
