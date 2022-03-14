@@ -9,11 +9,10 @@ abstract class ApiClient {
 }
 
 class LiveApiClient extends ApiClient {
+  final http.Client _client;
   final String _baseUrl;
   final String _serverVersion;
   final String _apiKey;
-
-  final http.Client _client;
 
   LiveApiClient({
     required http.Client client,

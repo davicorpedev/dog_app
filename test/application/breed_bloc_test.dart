@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dog_app/application/breed/breed_bloc.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
@@ -20,7 +21,7 @@ void main() {
     const tBreedList = [
       BreedInfo(
         image: 'test',
-        id: 1,
+        id: ID('1'),
         name: 'test',
         temperament: 'test',
         lifeSpan: 'test',

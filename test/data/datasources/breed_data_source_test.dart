@@ -1,7 +1,7 @@
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/breed_data_source.dart';
 import 'package:dog_app/data/models/breed_info_model.dart';
-
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
@@ -21,7 +21,7 @@ void main() {
   group('getBreeds', () {
     const tBreedModelList = [
       BreedInfoModel(
-        id: 1,
+        id: ID('1'),
         name: 'test',
         temperament: 'test',
         lifeSpan: 'test',

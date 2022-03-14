@@ -1,11 +1,12 @@
 import 'package:dog_app/domain/core/entitites/breed.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 
 class BreedInfo extends Breed {
   final String image;
 
   const BreedInfo({
     required this.image,
-    required int id,
+    required ID<BreedInfo> id,
     required String name,
     required String? temperament,
     required String lifeSpan,

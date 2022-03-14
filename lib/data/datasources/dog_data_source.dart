@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:dog_app/data/core/client/api_client.dart';
 import 'package:dog_app/data/models/dog_model.dart';
+import 'package:dog_app/domain/core/entitites/breed.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 
 abstract class DogDataSource {
-  Future<List<DogModel>> getDogsByBreed(int breedId);
+  Future<List<DogModel>> getDogsByBreed(ID<Breed> id);
   Future<DogModel> getRandomDog();
 }
 
@@ -14,12 +16,12 @@ class DogDataSourceImpl extends DogDataSource {
   DogDataSourceImpl({required ApiClient client}) : _client = client;
 
   @override
-  Future<List<DogModel>> getDogsByBreed(int breedId) async {
+  Future<List<DogModel>> getDogsByBreed(ID<Breed> id) async {
     final response = await _client.get(
       path: 'images/search',
       queryParameters: {
         'limit': '30',
-        'breed_id': '$breedId',
+        'breed_id': id.value,
       },
     );
 

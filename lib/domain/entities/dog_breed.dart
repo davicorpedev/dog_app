@@ -1,8 +1,9 @@
 import 'package:dog_app/domain/core/entitites/breed.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 
 class DogBreed extends Breed {
   const DogBreed({
-    required int id,
+    required ID<DogBreed> id,
     required String name,
     required String? temperament,
     required String lifeSpan,

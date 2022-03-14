@@ -1,5 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dog_app/application/dog/dogs_by_breed/dogs_by_breed_bloc.dart';
+import 'package:dog_app/domain/core/entitites/breed.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
@@ -17,16 +19,16 @@ void main() {
     repository = MockDogRepository();
   });
 
-  const tBreedId = 1;
-
   group('GetDogsByBreed', () {
+    const tBreedId = ID<Breed>('1');
+
     const tDogList = [
       Dog(
-        id: 'test',
+        id: ID('test'),
         url: 'test',
         breeds: [
           DogBreed(
-            id: 1,
+            id: ID('1'),
             name: 'test',
             temperament: 'test',
             lifeSpan: 'test',
@@ -39,7 +41,7 @@ void main() {
     blocTest<DogsByBreedBloc, DogsByBreedState>(
       'should get the data from the repository',
       setUp: () {
-        when(() => repository.getDogsByBreed(any())).thenAnswer(
+        when(() => repository.getDogsByBreed(tBreedId)).thenAnswer(
           (_) async => const Result<List<Dog>>.success(tDogList),
         );
       },
@@ -55,7 +57,7 @@ void main() {
     blocTest<DogsByBreedBloc, DogsByBreedState>(
       'should emit [Loading, Loaded] when the request has succeded',
       setUp: () {
-        when(() => repository.getDogsByBreed(any())).thenAnswer(
+        when(() => repository.getDogsByBreed(tBreedId)).thenAnswer(
           (_) async => const Result<List<Dog>>.success(tDogList),
         );
       },
@@ -72,7 +74,7 @@ void main() {
     blocTest<DogsByBreedBloc, DogsByBreedState>(
       'should emit [Loading, Error] when the request has failed',
       setUp: () {
-        when(() => repository.getDogsByBreed(any())).thenAnswer(
+        when(() => repository.getDogsByBreed(tBreedId)).thenAnswer(
           (_) async => Result<List<Dog>>.error(ServerFailure()),
         );
       },

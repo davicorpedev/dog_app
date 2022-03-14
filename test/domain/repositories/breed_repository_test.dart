@@ -1,6 +1,7 @@
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/breed_data_source.dart';
 import 'package:dog_app/data/models/breed_info_model.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
@@ -31,7 +32,7 @@ void main() {
     () {
       const tBreedModelList = [
         BreedInfoModel(
-          id: 1,
+          id: ID('1'),
           name: 'test',
           temperament: 'test',
           lifeSpan: 'test',

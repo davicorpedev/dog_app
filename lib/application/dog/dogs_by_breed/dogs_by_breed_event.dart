@@ -6,7 +6,7 @@ abstract class DogsByBreedEvent extends Equatable {
 }
 
 class GetDogsByBreedEvent extends DogsByBreedEvent {
-  final int breedId;
+  final ID<Breed> breedId;
 
   GetDogsByBreedEvent({required this.breedId});
 
