@@ -73,5 +73,19 @@ void main() {
         const RandomDogErrorState(message: serverFailureMessage),
       ],
     );
+
+    blocTest<RandomDogBloc, RandomDogState>(
+      'should emit [Loading, Error] with an error when the request does not return a Dog',
+      setUp: () {
+        when(() => repository.getRandomDog()).thenAnswer(
+          (_) async => Result<Dog>.error(DogNotExistsFailure()),
+        );
+      },
+      build: () => RandomDogBloc(repository: repository),
+      expect: () => [
+        const RandomDogLoadingState(),
+        const RandomDogErrorState(message: dogNotExistsFailureMessage),
+      ],
+    );
   });
 }

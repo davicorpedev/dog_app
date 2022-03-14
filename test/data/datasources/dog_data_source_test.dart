@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:dog_app/data/core/client/api_result.dart';
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
 import 'package:dog_app/data/models/dog_breed_model.dart';
@@ -5,7 +8,6 @@ import 'package:dog_app/data/models/dog_model.dart';
 import 'package:dog_app/domain/core/entitites/breed.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 
 import '../../fixtures/fixture_reader.dart';
@@ -46,17 +48,10 @@ void main() {
           queryParameters: any(named: 'queryParameters'),
         ),
       ).thenAnswer(
-        (_) async => http.Response(fixture('dog_list.json'), 200),
-      );
-    }
-
-    void mockGetDogsByBreedError() {
-      when(
-        () => client.get(
-          path: any(named: 'path'),
-          queryParameters: any(named: 'queryParameters'),
+        (_) async => ApiResult.fromList(
+          json.decode(fixture('dog_list.json')),
         ),
-      ).thenThrow(ServerException());
+      );
     }
 
     test(
@@ -92,7 +87,12 @@ void main() {
     test(
       'should throw a ServerException when request fails',
       () {
-        mockGetDogsByBreedError();
+        when(
+          () => client.get(
+            path: any(named: 'path'),
+            queryParameters: any(named: 'queryParameters'),
+          ),
+        ).thenThrow(ServerException());
 
         final call = dataSource.getDogsByBreed(tBreedID);
 
@@ -117,17 +117,11 @@ void main() {
     );
 
     void mockGetRandomDogSuccess() {
-      when(
-        () => client.get(path: any(named: 'path')),
-      ).thenAnswer(
-        (_) async => http.Response(fixture('dog_list.json'), 200),
+      when(() => client.get(path: any(named: 'path'))).thenAnswer(
+        (_) async => ApiResult.fromList(
+          json.decode(fixture('dog_list.json')),
+        ),
       );
-    }
-
-    void mockGetRandomDogError() {
-      when(
-        () => client.get(path: any(named: 'path')),
-      ).thenThrow(ServerException());
     }
 
     test(
@@ -157,11 +151,29 @@ void main() {
     test(
       'should throw ServerException when the request fails',
       () async {
-        mockGetRandomDogError();
+        when(
+          () => client.get(path: any(named: 'path')),
+        ).thenThrow(ServerException());
 
         final call = dataSource.getRandomDog;
 
         expect(() => call(), throwsA(const TypeMatcher<ServerException>()));
+      },
+    );
+
+    test(
+      'should throw DogNotExistsException when the request returns an empty JSON',
+      () async {
+        when(() => client.get(path: any(named: 'path'))).thenAnswer(
+          (_) async => ApiResult.fromList(json.decode('[]')),
+        );
+
+        final call = dataSource.getRandomDog;
+
+        expect(
+          () => call(),
+          throwsA(const TypeMatcher<DogNotExistsException>()),
+        );
       },
     );
   });

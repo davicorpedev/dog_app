@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dog_app/data/core/client/api_client.dart';
 import 'package:dog_app/data/models/breed_info_model.dart';
 
@@ -14,11 +12,9 @@ class BreedDataSourceImpl extends BreedDataSource {
 
   @override
   Future<List<BreedInfoModel>> getBreeds() async {
-    final response = await _client.get(path: 'breeds');
+    final result = await _client.get(path: 'breeds');
 
-    final body = json.decode(response.body);
-
-    return body
+    return result.response
         .map<BreedInfoModel>((breed) => BreedInfoModel.fromJson(breed))
         .toList();
   }

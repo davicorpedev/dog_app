@@ -186,6 +186,23 @@ void main() {
       );
 
       test(
+        'should return a DogNotExistsFailure when the request does not return a Dog',
+        () async {
+          networkInfo.runTestsOnline();
+          when(() => dataSource.getRandomDog()).thenThrow(
+            DogNotExistsException(),
+          );
+
+          final result = await repository.getRandomDog();
+
+          expect(
+            result,
+            Result<Dog>.error(DogNotExistsFailure()),
+          );
+        },
+      );
+
+      test(
         'should return a NetworkFailure when the user has no connection',
         () async {
           networkInfo.runTestsOffline();
