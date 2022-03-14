@@ -1,4 +1,3 @@
-import 'package:dog_app/data/core/client/api_client.dart';
 import 'package:dog_app/data/datasources/breed_data_source.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
 import 'package:dog_app/domain/core/utils/dog_image_downloader.dart';
@@ -12,12 +11,10 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
 class RepositoryBuilder extends StatelessWidget {
-  final ApiClient apiClient;
   final Widget child;
 
   const RepositoryBuilder({
     Key? key,
-    required this.apiClient,
     required this.child,
   }) : super(key: key);
 
@@ -25,24 +22,24 @@ class RepositoryBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        RepositoryProvider<DogRepository>(
-          create: (context) => DogRepository(
-            dataSource: DogDataSource(client: apiClient),
+        RepositoryProvider<DogRepositoryImpl>(
+          create: (context) => DogRepositoryImpl(
+            dataSource: RepositoryProvider.of<DogDataSourceImpl>(context),
             networkInfo: NetworkInfo(
               connectionChecker: InternetConnectionChecker(),
             ),
           ),
         ),
-        RepositoryProvider<BreedRepository>(
-          create: (context) => BreedRepository(
-            dataSource: BreedDataSource(client: apiClient),
+        RepositoryProvider<BreedRepositoryImpl>(
+          create: (context) => BreedRepositoryImpl(
+            dataSource: RepositoryProvider.of<BreedDataSourceImpl>(context),
             networkInfo: NetworkInfo(
               connectionChecker: InternetConnectionChecker(),
             ),
           ),
         ),
-        RepositoryProvider<UrlDownloaderRepository>(
-          create: (context) => UrlDownloaderRepository(
+        RepositoryProvider<UrlDownloaderRepositoryImpl>(
+          create: (context) => UrlDownloaderRepositoryImpl(
             imageDownloader: DogImageDownloader(),
           ),
         ),

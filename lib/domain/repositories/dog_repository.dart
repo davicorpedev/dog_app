@@ -5,16 +5,22 @@ import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/core/utils/network_info.dart';
 import 'package:dog_app/domain/entities/dog.dart';
 
-class DogRepository {
+abstract class DogRepository {
+  Future<Result<List<Dog>>> getDogsByBreed(int breedID);
+  Future<Result<Dog>> getRandomDog();
+}
+
+class DogRepositoryImpl extends DogRepository {
   final NetworkInfo _networkInfo;
   final DogDataSource _dataSource;
 
-  DogRepository({
+  DogRepositoryImpl({
     required NetworkInfo networkInfo,
     required DogDataSource dataSource,
   })  : _networkInfo = networkInfo,
         _dataSource = dataSource;
 
+  @override
   Future<Result<List<Dog>>> getDogsByBreed(int breedID) async {
     if (await _networkInfo.isConnected) {
       try {
@@ -29,6 +35,7 @@ class DogRepository {
     }
   }
 
+  @override
   Future<Result<Dog>> getRandomDog() async {
     if (await _networkInfo.isConnected) {
       try {

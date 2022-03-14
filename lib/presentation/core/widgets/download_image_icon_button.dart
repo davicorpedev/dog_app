@@ -13,7 +13,7 @@ class DownloadImageIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<DownloadImageCubit>(
       create: (context) => DownloadImageCubit(
-        repository: RepositoryProvider.of<UrlDownloaderRepository>(context),
+        repository: RepositoryProvider.of<UrlDownloaderRepositoryImpl>(context),
       ),
       child: BlocConsumer<DownloadImageCubit, DownloadImageState>(
         listener: (context, state) {

@@ -11,11 +11,11 @@ import '../utils/mock_api_client.dart';
 
 void main() {
   late MockApiClient mockHttpClient;
-  late BreedDataSource dataSource;
+  late BreedDataSourceImpl dataSource;
 
   setUp(() {
     mockHttpClient = MockApiClient();
-    dataSource = BreedDataSource(client: mockHttpClient);
+    dataSource = BreedDataSourceImpl(client: mockHttpClient);
   });
 
   group('getBreeds', () {

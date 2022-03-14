@@ -11,11 +11,11 @@ import '../utils/mock_api_client.dart';
 
 void main() {
   late MockApiClient client;
-  late DogDataSource dataSource;
+  late DogDataSourceImpl dataSource;
 
   setUp(() {
     client = MockApiClient();
-    dataSource = DogDataSource(client: client);
+    dataSource = DogDataSourceImpl(client: client);
   });
 
   setUpAll(() {

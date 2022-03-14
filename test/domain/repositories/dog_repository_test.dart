@@ -16,12 +16,12 @@ class MockDogDataSource extends Mock implements DogDataSource {}
 void main() {
   late MockNetworkInfo networkInfo;
   late MockDogDataSource dataSource;
-  late DogRepository repository;
+  late DogRepositoryImpl repository;
 
   setUp(() {
     networkInfo = MockNetworkInfo();
     dataSource = MockDogDataSource();
-    repository = DogRepository(
+    repository = DogRepositoryImpl(
       networkInfo: networkInfo,
       dataSource: dataSource,
     );

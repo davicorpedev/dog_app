@@ -1,14 +1,19 @@
 import 'dart:convert';
 
 import 'package:dog_app/data/core/client/api_client.dart';
-
 import 'package:dog_app/data/models/dog_model.dart';
 
-class DogDataSource {
+abstract class DogDataSource {
+  Future<List<DogModel>> getDogsByBreed(int breedId);
+  Future<DogModel> getRandomDog();
+}
+
+class DogDataSourceImpl extends DogDataSource {
   final ApiClient _client;
 
-  DogDataSource({required ApiClient client}) : _client = client;
+  DogDataSourceImpl({required ApiClient client}) : _client = client;
 
+  @override
   Future<List<DogModel>> getDogsByBreed(int breedId) async {
     final response = await _client.get(
       path: 'images/search',
@@ -23,6 +28,7 @@ class DogDataSource {
     return body.map<DogModel>((dog) => DogModel.fromJson(dog)).toList();
   }
 
+  @override
   Future<DogModel> getRandomDog() async {
     final response = await _client.get(path: 'images/search');
 
