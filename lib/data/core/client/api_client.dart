@@ -1,8 +1,11 @@
+import 'dart:convert';
+
+import 'package:dog_app/data/core/client/api_result.dart';
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:http/http.dart' as http;
 
 abstract class ApiClient {
-  Future<http.Response> get({
+  Future<ApiResult> get({
     required String path,
     Map<String, dynamic>? queryParameters = const {},
   });
@@ -25,7 +28,7 @@ class LiveApiClient extends ApiClient {
         _apiKey = apiKey;
 
   @override
-  Future<http.Response> get({
+  Future<ApiResult> get({
     required String path,
     Map<String, dynamic>? queryParameters = const {},
   }) async {
@@ -39,7 +42,13 @@ class LiveApiClient extends ApiClient {
     );
 
     if (response.statusCode == 200) {
-      return response;
+      final decodedResponse = json.decode(response.body);
+
+      if (decodedResponse is List<dynamic>) {
+        return ApiResult.fromList(decodedResponse);
+      } else {
+        return ApiResult.fromJson(decodedResponse);
+      }
     } else {
       throw ServerException();
     }

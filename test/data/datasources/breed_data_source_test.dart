@@ -1,9 +1,11 @@
+import 'dart:convert';
+
+import 'package:dog_app/data/core/client/api_result.dart';
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/breed_data_source.dart';
 import 'package:dog_app/data/models/breed_info_model.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 
 import '../../fixtures/fixture_reader.dart';
@@ -34,14 +36,10 @@ void main() {
       when(
         () => mockHttpClient.get(path: any(named: 'path')),
       ).thenAnswer(
-        (_) async => http.Response(fixture('breed_list.json'), 200),
+        (_) async => ApiResult.fromList(
+          jsonDecode(fixture('breed_list.json')),
+        ),
       );
-    }
-
-    void mockGetBreedsError() {
-      when(
-        () => mockHttpClient.get(path: any(named: 'path')),
-      ).thenThrow(ServerException());
     }
 
     test(
@@ -71,7 +69,8 @@ void main() {
     test(
       'should throw a ServerException when the response fails',
       () async {
-        mockGetBreedsError();
+        when(() => mockHttpClient.get(path: any(named: 'path')))
+            .thenThrow(ServerException());
 
         final call = dataSource.getBreeds();
 

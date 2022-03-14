@@ -46,6 +46,8 @@ class DogRepositoryImpl extends DogRepository {
         return Result.success(result);
       } on ServerException {
         return Result.error(ServerFailure());
+      } on DogNotExistsException {
+        return Result.error(DogNotExistsFailure());
       }
     } else {
       return Result.error(NetworkFailure());

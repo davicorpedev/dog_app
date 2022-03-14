@@ -1,4 +1,5 @@
 import 'package:dog_app/data/core/client/api_client.dart';
+import 'package:dog_app/data/core/client/api_result.dart';
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -32,14 +33,14 @@ void main() {
     'get',
     () {
       test(
-        'should call get of the http client',
+        'should perform a HTTP GET request',
         () async {
           when(
             () => httpClient.get(
               any(),
               headers: any(named: 'headers'),
             ),
-          ).thenAnswer((_) async => http.Response('', 200));
+          ).thenAnswer((_) async => http.Response('{}', 200));
 
           await apiClient.get(path: path);
 
@@ -57,19 +58,34 @@ void main() {
       );
 
       test(
-        'should return a Response if the request has succeed',
+        'should return an ApiResponse if the response is a JSON',
         () async {
           when(
             () => httpClient.get(
               any(),
               headers: any(named: 'headers'),
             ),
-          ).thenAnswer((_) async => http.Response('', 200));
+          ).thenAnswer((_) async => http.Response('{}', 200));
 
           final result = await apiClient.get(path: path);
 
-          expect(result.body, '');
-          expect(result.statusCode, 200);
+          expect(result, ApiResult.fromJson(const {}));
+        },
+      );
+
+      test(
+        'should return an ApiResponse if the response is a List',
+        () async {
+          when(
+            () => httpClient.get(
+              any(),
+              headers: any(named: 'headers'),
+            ),
+          ).thenAnswer((_) async => http.Response('[]', 200));
+
+          final result = await apiClient.get(path: path);
+
+          expect(result, ApiResult.fromList(const []));
         },
       );
 
@@ -81,7 +97,7 @@ void main() {
               any(),
               headers: any(named: 'headers'),
             ),
-          ).thenAnswer((_) async => http.Response('', 404));
+          ).thenAnswer((_) async => http.Response('{}', 404));
 
           final call = apiClient.get(path: path);
 
