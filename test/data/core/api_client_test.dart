@@ -12,13 +12,13 @@ void main() {
   const apiKey = 'apiKey';
   const path = 'path';
 
-  late final ApiClient apiClient;
+  late final LiveApiClient apiClient;
   late final MockHttpClient httpClient;
 
   setUpAll(() {
     httpClient = MockHttpClient();
 
-    apiClient = ApiClient(
+    apiClient = LiveApiClient(
       client: httpClient,
       baseUrl: baseUrl,
       serverVersion: serverVersion,

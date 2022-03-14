@@ -1,14 +1,21 @@
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:http/http.dart' as http;
 
-class ApiClient {
+abstract class ApiClient {
+  Future<http.Response> get({
+    required String path,
+    Map<String, dynamic>? queryParameters = const {},
+  });
+}
+
+class LiveApiClient extends ApiClient {
   final String _baseUrl;
   final String _serverVersion;
   final String _apiKey;
 
   final http.Client _client;
 
-  ApiClient({
+  LiveApiClient({
     required http.Client client,
     required String baseUrl,
     required String serverVersion,
@@ -18,6 +25,7 @@ class ApiClient {
         _serverVersion = serverVersion,
         _apiKey = apiKey;
 
+  @override
   Future<http.Response> get({
     required String path,
     Map<String, dynamic>? queryParameters = const {},
