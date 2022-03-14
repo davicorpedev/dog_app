@@ -2,6 +2,7 @@ import 'package:dog_app/config/global_config.dart';
 import 'package:dog_app/data/core/client/api_client.dart';
 import 'package:dog_app/presentation/app_initializer.dart';
 import 'package:dog_app/presentation/core/theming/app_themes.dart';
+import 'package:dog_app/presentation/data_source_builder.dart';
 import 'package:dog_app/presentation/pages/welcome/welcome_page.dart';
 import 'package:dog_app/presentation/repository_builder.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +31,11 @@ class _AppState extends State<App> {
           },
           initalizedBuilder: (context) => Provider.value(
             value: _apiClient,
-            child: RepositoryBuilder(
+            child: DataSourceBuilder(
               apiClient: _apiClient,
-              child: widget!,
+              child: RepositoryBuilder(
+                child: widget!,
+              ),
             ),
           ),
         );

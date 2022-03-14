@@ -5,11 +5,15 @@ import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/core/utils/network_info.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
 
-class BreedRepository {
+abstract class BreedRepository {
+  Future<Result<List<BreedInfo>>> getBreeds();
+}
+
+class BreedRepositoryImpl extends BreedRepository {
   final NetworkInfo _networkInfo;
   final BreedDataSource _dataSource;
 
-  BreedRepository({
+  BreedRepositoryImpl({
     required NetworkInfo networkInfo,
     required BreedDataSource dataSource,
   })  : _networkInfo = networkInfo,
@@ -17,6 +21,7 @@ class BreedRepository {
 
   List<BreedInfo> _cachedBreeds = [];
 
+  @override
   Future<Result<List<BreedInfo>>> getBreeds() async {
     if (_cachedBreeds.isEmpty) {
       return await _getBreedsFromServer();
