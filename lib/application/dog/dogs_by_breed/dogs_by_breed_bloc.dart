@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:dog_app/domain/core/entitites/breed.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
@@ -8,11 +10,11 @@ part 'dogs_by_breed_event.dart';
 part 'dogs_by_breed_state.dart';
 
 class DogsByBreedBloc extends Bloc<DogsByBreedEvent, DogsByBreedState> {
-  final int _breedId;
+  final ID<Breed> _breedId;
   final DogRepository _repository;
 
   DogsByBreedBloc({
-    required int breedId,
+    required ID<Breed> breedId,
     required DogRepository repository,
   })  : _repository = repository,
         _breedId = breedId,

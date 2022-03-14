@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dog_app/application/dog/random_dog/random_dog_bloc.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
@@ -19,11 +20,11 @@ void main() {
 
   group('GetRandomDog', () {
     const tDog = Dog(
-      id: 'test',
+      id: ID('test'),
       url: 'test',
       breeds: [
         DogBreed(
-          id: 1,
+          id: ID('1'),
           name: 'test',
           temperament: 'test',
           lifeSpan: 'test',

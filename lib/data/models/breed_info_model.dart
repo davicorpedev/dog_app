@@ -1,8 +1,9 @@
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
 
 class BreedInfoModel extends BreedInfo {
   const BreedInfoModel({
-    required int id,
+    required ID<BreedInfoModel> id,
     required String name,
     required String? temperament,
     required String lifeSpan,
@@ -19,7 +20,7 @@ class BreedInfoModel extends BreedInfo {
 
   factory BreedInfoModel.fromJson(Map<String, dynamic> json) {
     return BreedInfoModel(
-      id: json['id'],
+      id: ID(json['id'].toString()),
       name: json['name'],
       temperament: json['temperament'],
       lifeSpan: json['life_span'],

@@ -1,7 +1,8 @@
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class Breed extends Equatable {
-  final int id;
+  final ID<Breed> id;
   final String name;
   final String? temperament;
   final String lifeSpan;

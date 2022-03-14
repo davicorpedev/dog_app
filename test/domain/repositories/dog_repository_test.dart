@@ -2,6 +2,8 @@ import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
 import 'package:dog_app/data/models/dog_breed_model.dart';
 import 'package:dog_app/data/models/dog_model.dart';
+import 'package:dog_app/domain/core/entitites/breed.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
@@ -28,15 +30,19 @@ void main() {
   });
 
   group('getDogsByBreed', () {
-    const tBreedId = 1;
+    const tBreedId = ID<Breed>('1');
+
+    setUpAll(() {
+      registerFallbackValue(ID<Breed>);
+    });
 
     const tDogModelList = [
       DogModel(
-        id: 'test',
+        id: ID('test'),
         url: 'test',
         breeds: [
           DogBreedModel(
-            id: 1,
+            id: ID('1'),
             name: 'test',
             temperament: 'test',
             lifeSpan: 'test',
@@ -52,7 +58,7 @@ void main() {
       'should check if the device is online',
       () {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getDogsByBreed(any())).thenAnswer(
+        when(() => dataSource.getDogsByBreed(tBreedId)).thenAnswer(
           (_) async => tDogModelList,
         );
 
@@ -66,7 +72,7 @@ void main() {
       'should return data when the call is successful',
       () async {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getDogsByBreed(any())).thenAnswer(
+        when(() => dataSource.getDogsByBreed(tBreedId)).thenAnswer(
           (_) async => tDogModelList,
         );
 
@@ -84,7 +90,7 @@ void main() {
       'should return a ServerFailure when the request has failed',
       () async {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getDogsByBreed(any())).thenThrow(
+        when(() => dataSource.getDogsByBreed(tBreedId)).thenThrow(
           ServerException(),
         );
 
@@ -105,7 +111,7 @@ void main() {
 
         final result = await repository.getDogsByBreed(tBreedId);
 
-        verifyNever(() => dataSource.getDogsByBreed(any())).called(0);
+        verifyNever(() => dataSource.getDogsByBreed(tBreedId)).called(0);
         expect(
           result,
           Result<List<Dog>>.error(NetworkFailure()),
@@ -118,11 +124,11 @@ void main() {
     'getRandomDog',
     () {
       const tDogModel = DogModel(
-        id: 'test',
+        id: ID('test'),
         url: 'test',
         breeds: [
           DogBreedModel(
-            id: 1,
+            id: ID('1'),
             name: 'test',
             temperament: 'test',
             lifeSpan: 'test',

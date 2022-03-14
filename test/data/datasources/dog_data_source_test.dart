@@ -2,6 +2,8 @@ import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
 import 'package:dog_app/data/models/dog_breed_model.dart';
 import 'package:dog_app/data/models/dog_model.dart';
+import 'package:dog_app/domain/core/entitites/breed.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
@@ -19,15 +21,15 @@ void main() {
   });
 
   group('getDogsByBreed', () {
-    const tBreedID = 1;
+    const tBreedID = ID<Breed>('1');
 
     const tDogModelList = [
       DogModel(
-        id: 'test',
+        id: ID('test'),
         url: 'test',
         breeds: [
           DogBreedModel(
-            id: 1,
+            id: ID('1'),
             name: 'test',
             temperament: 'test',
             lifeSpan: 'test',
@@ -69,7 +71,7 @@ void main() {
             path: 'images/search',
             queryParameters: {
               'limit': '30',
-              'breed_id': '$tBreedID',
+              'breed_id': tBreedID.value,
             },
           ),
         ).called(1);
@@ -101,11 +103,11 @@ void main() {
 
   group('getRandomDog', () {
     const tDogModel = DogModel(
-      id: 'test',
+      id: ID('test'),
       url: 'test',
       breeds: [
         DogBreedModel(
-          id: 1,
+          id: ID('1'),
           name: 'test',
           temperament: 'test',
           lifeSpan: 'test',

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dog_app/data/models/dog_breed_model.dart';
 import 'package:dog_app/data/models/dog_model.dart';
+import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -9,11 +10,11 @@ import '../../fixtures/fixture_reader.dart';
 
 void main() {
   const tDogModel = DogModel(
-    id: 'test',
+    id: ID('test'),
     url: 'test',
     breeds: [
       DogBreedModel(
-        id: 1,
+        id: ID('1'),
         name: 'test',
         temperament: 'test',
         lifeSpan: 'test',
