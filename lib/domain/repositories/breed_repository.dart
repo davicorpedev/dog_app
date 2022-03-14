@@ -24,13 +24,13 @@ class BreedRepositoryImpl extends BreedRepository {
   @override
   Future<Result<List<BreedInfo>>> getBreeds() async {
     if (_cachedBreeds.isEmpty) {
-      return await _getBreedsFromServer();
+      return await _getBreedsFromDataSource();
     }
 
     return Result.success(_cachedBreeds);
   }
 
-  Future<Result<List<BreedInfo>>> _getBreedsFromServer() async {
+  Future<Result<List<BreedInfo>>> _getBreedsFromDataSource() async {
     if (await _networkInfo.isConnected) {
       try {
         final result = await _dataSource.getBreeds();

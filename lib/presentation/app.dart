@@ -49,7 +49,7 @@ class _AppState extends State<App> {
 
     await config.setupConfiguration();
 
-    _apiClient = ApiClient(
+    _apiClient = LiveApiClient(
       client: http.Client(),
       baseUrl: config.baseUrl,
       serverVersion: config.serverVersion,
