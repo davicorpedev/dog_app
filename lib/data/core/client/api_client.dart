@@ -20,7 +20,7 @@ class ApiClient {
 
   Future<http.Response> get({
     required String path,
-    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? queryParameters = const {},
   }) async {
     final response = await _client.get(
       Uri.https(

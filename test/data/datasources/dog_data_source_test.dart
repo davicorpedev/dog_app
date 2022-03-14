@@ -18,10 +18,6 @@ void main() {
     dataSource = DogDataSourceImpl(client: client);
   });
 
-  setUpAll(() {
-    registerFallbackValue(Uri());
-  });
-
   group('getDogsByBreed', () {
     const tBreedID = 1;
 
