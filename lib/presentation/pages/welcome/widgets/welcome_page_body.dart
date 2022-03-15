@@ -32,7 +32,7 @@ class WelcomePageBody extends StatelessWidget {
         ),
         ListTile(
           title: Text(
-            'Human',
+            'Hooman',
             style: Theme.of(context).textTheme.headline3,
           ),
         ),
