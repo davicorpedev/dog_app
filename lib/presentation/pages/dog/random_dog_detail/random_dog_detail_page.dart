@@ -12,7 +12,7 @@ class RandomDogDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<RandomDogBloc>(
       create: (context) => RandomDogBloc(
-        repository: RepositoryProvider.of<DogRepositoryImpl>(context),
+        repository: RepositoryProvider.of<DogRepository>(context),
       ),
       child: BlocBuilder<RandomDogBloc, RandomDogState>(
         builder: (context, state) {

@@ -23,7 +23,7 @@ class DogByBreedPage extends StatelessWidget {
           BlocProvider(
             create: (context) => DogsByBreedBloc(
               breedId: breed.id,
-              repository: RepositoryProvider.of<DogRepositoryImpl>(context),
+              repository: RepositoryProvider.of<DogRepository>(context),
             ),
             child: BlocBuilder<DogsByBreedBloc, DogsByBreedState>(
               builder: (context, state) {

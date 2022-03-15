@@ -19,10 +19,10 @@ class DataSourceBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        RepositoryProvider<DogDataSourceImpl>(
+        RepositoryProvider<DogDataSource>(
           create: (context) => DogDataSourceImpl(client: apiClient),
         ),
-        RepositoryProvider<BreedDataSourceImpl>(
+        RepositoryProvider<BreedDataSource>(
           create: (context) => BreedDataSourceImpl(client: apiClient),
         ),
       ],

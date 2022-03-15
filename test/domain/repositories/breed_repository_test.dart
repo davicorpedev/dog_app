@@ -16,7 +16,7 @@ class MockBreedDataSource extends Mock implements BreedDataSource {}
 void main() {
   late MockNetworkInfo networkInfo;
   late MockBreedDataSource dataSource;
-  late BreedRepositoryImpl repository;
+  late BreedRepository repository;
 
   setUp(() {
     networkInfo = MockNetworkInfo();

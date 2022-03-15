@@ -47,7 +47,7 @@ class BreedPage extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => BreedBloc(
-              repository: RepositoryProvider.of<BreedRepositoryImpl>(context),
+              repository: RepositoryProvider.of<BreedRepository>(context),
             ),
             child: BlocBuilder<BreedBloc, BreedState>(
               builder: (context, state) {

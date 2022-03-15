@@ -10,7 +10,7 @@ class MockDogImageDownloader extends Mock implements DogImageDownloader {}
 
 void main() {
   late MockDogImageDownloader imageDownloader;
-  late UrlDownloaderRepositoryImpl repository;
+  late UrlDownloaderRepository repository;
 
   setUp(() {
     imageDownloader = MockDogImageDownloader();

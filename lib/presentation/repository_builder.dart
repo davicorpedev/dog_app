@@ -22,23 +22,23 @@ class RepositoryBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        RepositoryProvider<DogRepositoryImpl>(
+        RepositoryProvider<DogRepository>(
           create: (context) => DogRepositoryImpl(
-            dataSource: RepositoryProvider.of<DogDataSourceImpl>(context),
+            dataSource: RepositoryProvider.of<DogDataSource>(context),
             networkInfo: NetworkInfo(
               connectionChecker: InternetConnectionChecker(),
             ),
           ),
         ),
-        RepositoryProvider<BreedRepositoryImpl>(
+        RepositoryProvider<BreedRepository>(
           create: (context) => BreedRepositoryImpl(
-            dataSource: RepositoryProvider.of<BreedDataSourceImpl>(context),
+            dataSource: RepositoryProvider.of<BreedDataSource>(context),
             networkInfo: NetworkInfo(
               connectionChecker: InternetConnectionChecker(),
             ),
           ),
         ),
-        RepositoryProvider<UrlDownloaderRepositoryImpl>(
+        RepositoryProvider<UrlDownloaderRepository>(
           create: (context) => UrlDownloaderRepositoryImpl(
             imageDownloader: DogImageDownloader(),
           ),
