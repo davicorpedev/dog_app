@@ -15,7 +15,7 @@ import '../utils/mock_api_client.dart';
 
 void main() {
   late MockApiClient client;
-  late DogDataSourceImpl dataSource;
+  late DogDataSource dataSource;
 
   setUp(() {
     client = MockApiClient();
@@ -48,9 +48,7 @@ void main() {
           queryParameters: any(named: 'queryParameters'),
         ),
       ).thenAnswer(
-        (_) async => ApiResult.fromList(
-          json.decode(fixture('dog_list.json')),
-        ),
+        (_) async => ApiResult.fromList(json.decode(fixture('dog_list.json'))),
       );
     }
 
@@ -118,9 +116,7 @@ void main() {
 
     void mockGetRandomDogSuccess() {
       when(() => client.get(path: any(named: 'path'))).thenAnswer(
-        (_) async => ApiResult.fromList(
-          json.decode(fixture('dog_list.json')),
-        ),
+        (_) async => ApiResult.fromList(json.decode(fixture('dog_list.json'))),
       );
     }
 

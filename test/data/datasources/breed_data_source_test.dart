@@ -13,7 +13,7 @@ import '../utils/mock_api_client.dart';
 
 void main() {
   late MockApiClient mockHttpClient;
-  late BreedDataSourceImpl dataSource;
+  late BreedDataSource dataSource;
 
   setUp(() {
     mockHttpClient = MockApiClient();
