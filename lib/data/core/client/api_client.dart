@@ -44,11 +44,7 @@ class LiveApiClient extends ApiClient {
     if (response.statusCode == 200) {
       final decodedResponse = json.decode(response.body);
 
-      if (decodedResponse is List<dynamic>) {
-        return ApiResult.fromList(decodedResponse);
-      } else {
-        return ApiResult.fromJson(decodedResponse);
-      }
+      return ApiResult.fromList(decodedResponse);
     } else {
       throw ServerException();
     }
