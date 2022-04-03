@@ -1,5 +1,5 @@
-import 'package:dog_app/domain/core/entitites/breed.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
+import 'package:dog_app/domain/entities/breed.dart';
 
 class BreedInfo extends Breed {
   final String image;

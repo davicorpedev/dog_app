@@ -1,7 +1,7 @@
-import 'package:dog_app/application/dog/dogs_by_breed/dogs_by_breed_bloc.dart';
-import 'package:dog_app/domain/core/entitites/breed.dart';
+import 'package:dog_app/application/dogs_by_breed/dogs_by_breed_bloc.dart';
+import 'package:dog_app/domain/entities/breed.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
-import 'package:dog_app/presentation/core/widgets/breed_info.dart';
+import 'package:dog_app/presentation/core/widgets/breed_info_layout.dart';
 import 'package:dog_app/presentation/pages/dog/dogs_by_breed/widgets/dog_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +18,7 @@ class DogsByBreedPage extends StatelessWidget {
         slivers: [
           const SliverAppBar(floating: true),
           SliverToBoxAdapter(
-            child: BreedInfo(breed: breed),
+            child: BreedInfoLayout(breed: breed),
           ),
           BlocProvider(
             create: (context) => DogsByBreedBloc(

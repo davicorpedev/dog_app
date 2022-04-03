@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:dog_app/domain/core/entitites/breed.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
+import 'package:dog_app/domain/entities/breed.dart';
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
 import 'package:equatable/equatable.dart';

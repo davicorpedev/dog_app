@@ -5,8 +5,8 @@ import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
 import 'package:dog_app/data/models/dog_breed_model.dart';
 import 'package:dog_app/data/models/dog_model.dart';
-import 'package:dog_app/domain/core/entitites/breed.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
+import 'package:dog_app/domain/entities/breed.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
