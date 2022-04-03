@@ -21,13 +21,17 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomePage());
     },
-    BreedsRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-          routeData: routeData, child: const BreedsPage());
-    },
     RandomDogDetailRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const RandomDogDetailPage());
+    },
+    BreedsFlowRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const BreedsFlow());
+    },
+    BreedsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const BreedsPage());
     },
     DogDetailRoute.name: (routeData) {
       final args = routeData.argsAs<DogDetailRouteArgs>();
@@ -39,17 +43,23 @@ class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<DogsByBreedRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData,
-          child: DogsByBreedPage(key: args.key, breed: args.breed));
+          child: DogsByBreedPage(key: args.key, breed: args.breed),
+          fullscreenDialog: true);
     }
   };
 
   @override
   List<RouteConfig> get routes => [
         RouteConfig(HomeRoute.name, path: '/'),
-        RouteConfig(BreedsRoute.name, path: '/breeds-page'),
         RouteConfig(RandomDogDetailRoute.name, path: '/random-dog-detail-page'),
-        RouteConfig(DogDetailRoute.name, path: '/dog-detail-page'),
-        RouteConfig(DogsByBreedRoute.name, path: '/dogs-by-breed-page')
+        RouteConfig(BreedsFlowRoute.name, path: '/breeds-flow', children: [
+          RouteConfig(BreedsRoute.name,
+              path: 'breeds-page', parent: BreedsFlowRoute.name),
+          RouteConfig(DogDetailRoute.name,
+              path: 'dog-detail-page', parent: BreedsFlowRoute.name),
+          RouteConfig(DogsByBreedRoute.name,
+              path: 'dogs-by-breed-page', parent: BreedsFlowRoute.name)
+        ])
       ];
 }
 
@@ -62,14 +72,6 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [BreedsPage]
-class BreedsRoute extends PageRouteInfo<void> {
-  const BreedsRoute() : super(BreedsRoute.name, path: '/breeds-page');
-
-  static const String name = 'BreedsRoute';
-}
-
-/// generated route for
 /// [RandomDogDetailPage]
 class RandomDogDetailRoute extends PageRouteInfo<void> {
   const RandomDogDetailRoute()
@@ -79,11 +81,29 @@ class RandomDogDetailRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BreedsFlow]
+class BreedsFlowRoute extends PageRouteInfo<void> {
+  const BreedsFlowRoute({List<PageRouteInfo>? children})
+      : super(BreedsFlowRoute.name,
+            path: '/breeds-flow', initialChildren: children);
+
+  static const String name = 'BreedsFlowRoute';
+}
+
+/// generated route for
+/// [BreedsPage]
+class BreedsRoute extends PageRouteInfo<void> {
+  const BreedsRoute() : super(BreedsRoute.name, path: 'breeds-page');
+
+  static const String name = 'BreedsRoute';
+}
+
+/// generated route for
 /// [DogDetailPage]
 class DogDetailRoute extends PageRouteInfo<DogDetailRouteArgs> {
   DogDetailRoute({Key? key, required Dog dog})
       : super(DogDetailRoute.name,
-            path: '/dog-detail-page',
+            path: 'dog-detail-page',
             args: DogDetailRouteArgs(key: key, dog: dog));
 
   static const String name = 'DogDetailRoute';
@@ -107,7 +127,7 @@ class DogDetailRouteArgs {
 class DogsByBreedRoute extends PageRouteInfo<DogsByBreedRouteArgs> {
   DogsByBreedRoute({Key? key, required Breed breed})
       : super(DogsByBreedRoute.name,
-            path: '/dogs-by-breed-page',
+            path: 'dogs-by-breed-page',
             args: DogsByBreedRouteArgs(key: key, breed: breed));
 
   static const String name = 'DogsByBreedRoute';

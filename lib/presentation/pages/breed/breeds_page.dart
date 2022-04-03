@@ -1,7 +1,7 @@
 import 'package:dog_app/application/breed/breed_bloc.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
+import 'package:dog_app/presentation/navigation/navigator.dart';
 import 'package:dog_app/presentation/pages/breed/widgets/breed_grid.dart';
-import 'package:dog_app/presentation/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

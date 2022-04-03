@@ -1,4 +1,4 @@
-import 'package:dog_app/application/dog/random_dog/random_dog_bloc.dart';
+import 'package:dog_app/application/random_dog/random_dog_bloc.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
 import 'package:dog_app/presentation/core/widgets/download_image_icon_button.dart';
 import 'package:dog_app/presentation/pages/dog/random_dog_detail/widgets/random_dog_detail_body.dart';

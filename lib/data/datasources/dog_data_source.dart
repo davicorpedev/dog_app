@@ -1,8 +1,8 @@
 import 'package:dog_app/data/core/client/api_client.dart';
 import 'package:dog_app/data/core/error/exceptions.dart';
 import 'package:dog_app/data/models/dog_model.dart';
-import 'package:dog_app/domain/core/entitites/breed.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
+import 'package:dog_app/domain/entities/breed.dart';
 
 abstract class DogDataSource {
   Future<List<DogModel>> getDogsByBreed(ID<Breed> id);

@@ -1,8 +1,8 @@
+import 'package:dog_app/application/breeds_flow/breeds_flow_cubit.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
-import 'package:dog_app/presentation/router/app_router.dart';
-import 'package:dog_app/presentation/utils/navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BreedGridCard extends StatelessWidget {
   final BreedInfo breed;
@@ -15,10 +15,7 @@ class BreedGridCard extends StatelessWidget {
       color: Theme.of(context).scaffoldBackgroundColor,
       child: InkWell(
         onTap: () {
-          AppNavigator.navigateTo(
-            context: context,
-            route: DogsByBreedRoute(breed: breed),
-          );
+          context.read<BreedsFlowCubit>().openDogsByBreed(breed);
         },
         child: Column(
           children: [

@@ -1,6 +1,6 @@
 import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
-import 'package:dog_app/presentation/router/app_router.dart';
-import 'package:dog_app/presentation/utils/navigator.dart';
+import 'package:dog_app/presentation/navigation/app_router.dart';
+import 'package:dog_app/presentation/navigation/navigator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';

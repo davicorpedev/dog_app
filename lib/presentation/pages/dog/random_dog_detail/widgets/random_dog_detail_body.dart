@@ -1,5 +1,5 @@
-import 'package:dog_app/application/dog/random_dog/random_dog_bloc.dart';
-import 'package:dog_app/presentation/core/widgets/breed_info.dart';
+import 'package:dog_app/application/random_dog/random_dog_bloc.dart';
+import 'package:dog_app/presentation/core/widgets/breed_info_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +24,7 @@ class RandomDogDetailBody extends StatelessWidget {
                   ),
                   Column(
                     children: state.dog.breeds
-                        .map((e) => BreedInfo(breed: e))
+                        .map((e) => BreedInfoLayout(breed: e))
                         .toList(),
                   ),
                 ],

@@ -1,10 +1,10 @@
+import 'package:dog_app/domain/entities/breed.dart';
 import 'package:flutter/material.dart';
-import 'package:dog_app/domain/core/entitites/breed.dart';
 
-class BreedInfo extends StatelessWidget {
+class BreedInfoLayout extends StatelessWidget {
   final Breed breed;
 
-  const BreedInfo({Key? key, required this.breed}) : super(key: key);
+  const BreedInfoLayout({Key? key, required this.breed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
