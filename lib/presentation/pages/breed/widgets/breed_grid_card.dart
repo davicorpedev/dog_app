@@ -1,6 +1,6 @@
 import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
-import 'package:dog_app/presentation/pages/dog/dogs_by_breed/dogs_by_breed_page.dart';
+import 'package:dog_app/presentation/router/app_router.dart';
 import 'package:dog_app/presentation/utils/navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class BreedGridCard extends StatelessWidget {
         onTap: () {
           AppNavigator.navigateTo(
             context: context,
-            page: DogByBreedPage(breed: breed),
+            route: DogsByBreedRoute(breed: breed),
           );
         },
         child: Column(

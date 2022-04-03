@@ -6,10 +6,10 @@ import 'package:dog_app/presentation/pages/dog/dogs_by_breed/widgets/dog_grid.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DogByBreedPage extends StatelessWidget {
+class DogsByBreedPage extends StatelessWidget {
   final Breed breed;
 
-  const DogByBreedPage({Key? key, required this.breed}) : super(key: key);
+  const DogsByBreedPage({Key? key, required this.breed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,11 @@
 import 'package:dog_app/presentation/core/icon/paw_icons.dart';
-import 'package:dog_app/presentation/pages/breed/breed_page.dart';
-import 'package:dog_app/presentation/pages/welcome/widgets/welcome_page_body.dart';
+import 'package:dog_app/presentation/pages/home/widgets/home_body.dart';
+import 'package:dog_app/presentation/router/app_router.dart';
 import 'package:dog_app/presentation/utils/navigator.dart';
 import 'package:flutter/material.dart';
 
-class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,14 @@ class WelcomePage extends StatelessWidget {
         ),
         child: const Padding(
           padding: EdgeInsets.all(16),
-          child: WelcomePageBody(),
+          child: HomeBody(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           AppNavigator.navigateTo(
             context: context,
-            page: const BreedPage(),
+            route: const BreedsRoute(),
           );
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
