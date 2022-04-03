@@ -1,12 +1,12 @@
 import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
-import 'package:dog_app/presentation/pages/dog/random_dog_detail/random_dog_detail_page.dart';
+import 'package:dog_app/presentation/router/app_router.dart';
 import 'package:dog_app/presentation/utils/navigator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class WelcomePageBody extends StatelessWidget {
-  const WelcomePageBody({Key? key}) : super(key: key);
+class HomeBody extends StatelessWidget {
+  const HomeBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class WelcomePageBody extends StatelessWidget {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => AppNavigator.navigateTo(
                           context: context,
-                          page: const RandomDogDetailPage(),
+                          route: const RandomDogDetailRoute(),
                         ),
                 ),
               ],

@@ -3,8 +3,8 @@ import 'package:dog_app/data/core/client/api_client.dart';
 import 'package:dog_app/presentation/app_initializer.dart';
 import 'package:dog_app/presentation/core/theming/app_themes.dart';
 import 'package:dog_app/presentation/data_source_builder.dart';
-import 'package:dog_app/presentation/pages/welcome/welcome_page.dart';
 import 'package:dog_app/presentation/repository_builder.dart';
+import 'package:dog_app/presentation/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -18,12 +18,15 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   late ApiClient _apiClient;
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'DogApp',
       theme: AppThemes.appTheme,
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
       builder: (context, widget) {
         return AppInitializer(
           initializeTasks: () async {
@@ -40,7 +43,6 @@ class _AppState extends State<App> {
           ),
         );
       },
-      home: const WelcomePage(),
     );
   }
 

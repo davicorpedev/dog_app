@@ -1,5 +1,5 @@
 import 'package:dog_app/application/app_initializer/app_initializer_cubit.dart';
-import 'package:dog_app/presentation/pages/welcome/splash_page.dart';
+import 'package:dog_app/presentation/pages/app_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,7 +37,7 @@ class _AppInitializerState extends State<AppInitializer> {
           return widget.initalizedBuilder(context);
         }
 
-        return const SplashPage();
+        return const AppSplash();
       },
     );
   }

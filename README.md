@@ -16,7 +16,6 @@ In order to execute this project you will need to create a new file on config/ n
 
 ## Coming soon:
 
-- Navigation 2.0
 - Image Performance
 - UI Redisign 
 

@@ -1,12 +1,12 @@
+import 'package:dog_app/application/breed/breed_bloc.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
+import 'package:dog_app/presentation/pages/breed/widgets/breed_grid.dart';
+import 'package:dog_app/presentation/utils/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dog_app/application/breed/breed_bloc.dart';
 
-import 'package:dog_app/presentation/pages/breed/widgets/breed_grid.dart';
-
-class BreedPage extends StatelessWidget {
-  const BreedPage({Key? key}) : super(key: key);
+class BreedsPage extends StatelessWidget {
+  const BreedsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class BreedPage extends StatelessWidget {
                 icon: const Icon(Icons.home),
                 tooltip: 'Return to Home',
                 onPressed: () {
-                  Navigator.pop(context);
+                  AppNavigator.pop(context);
                 },
               ),
             ],

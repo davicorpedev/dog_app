@@ -1,6 +1,6 @@
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
-import 'package:dog_app/presentation/pages/dog/dog_detail/dog_detail_page.dart';
+import 'package:dog_app/presentation/router/app_router.dart';
 import 'package:dog_app/presentation/utils/navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class DogGridCard extends StatelessWidget {
         onTap: () {
           AppNavigator.navigateTo(
             context: context,
-            page: DogDetailPage(dog: dog),
+            route: DogDetailRoute(dog: dog),
           );
         },
         child: ClipRRect(
