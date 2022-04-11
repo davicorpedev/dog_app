@@ -1,4 +1,4 @@
-import 'package:dog_app/application/dogs_by_breed/dogs_by_breed_bloc.dart';
+import 'package:dog_app/application/pages/dogs_by_breed/dogs_by_breed_bloc.dart';
 import 'package:dog_app/domain/entities/breed.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
 import 'package:dog_app/presentation/core/widgets/breed_info_layout.dart';
@@ -16,13 +16,15 @@ class DogsByBreedPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(floating: true),
+          const SliverAppBar(
+            floating: true,
+          ),
           SliverToBoxAdapter(
             child: BreedInfoLayout(breed: breed),
           ),
           BlocProvider(
             create: (context) => DogsByBreedBloc(
-              breedId: breed.id,
+              breedID: breed.id,
               repository: RepositoryProvider.of<DogRepository>(context),
             ),
             child: BlocBuilder<DogsByBreedBloc, DogsByBreedState>(

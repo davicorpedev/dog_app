@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dog_app/application/breeds_flow/breeds_flow_cubit.dart';
+import 'package:dog_app/application/navigation/breeds_flow/breeds_flow_cubit.dart';
 import 'package:dog_app/presentation/navigation/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +34,7 @@ class _BreedsFlowState extends State<BreedsFlow> {
 
     switch (state.currentScreen) {
       case BreedsFlowScreen.breeds:
-        return pages;
+        break;
       case BreedsFlowScreen.dogsByBreed:
         pages.add(DogsByBreedRoute(breed: state.selectedBreed!));
         break;

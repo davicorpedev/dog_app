@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dog_app/application/breed/breed_bloc.dart';
+import 'package:dog_app/application/pages/breeds/breeds_bloc.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
@@ -29,44 +29,44 @@ void main() {
       ),
     ];
 
-    blocTest<BreedBloc, BreedState>(
+    blocTest<BreedsBloc, BreedsState>(
       'should get the data from the repository',
       setUp: () {
         when(() => repository.getBreeds()).thenAnswer(
           (_) async => const Result<List<BreedInfo>>.success(tBreedList),
         );
       },
-      build: () => BreedBloc(repository: repository),
+      build: () => BreedsBloc(repository: repository),
       verify: (bloc) {
         verify(() => repository.getBreeds()).called(1);
       },
     );
 
-    blocTest<BreedBloc, BreedState>(
+    blocTest<BreedsBloc, BreedsState>(
       'should emit [Loading, Loaded] when the request has succeded',
       setUp: () {
         when(() => repository.getBreeds()).thenAnswer(
           (_) async => const Result<List<BreedInfo>>.success(tBreedList),
         );
       },
-      build: () => BreedBloc(repository: repository),
+      build: () => BreedsBloc(repository: repository),
       expect: () => [
-        const BreedLoadingState(),
-        const BreedLoadedState(breeds: tBreedList),
+        const BreedsLoadingState(),
+        const BreedsLoadedState(breeds: tBreedList),
       ],
     );
 
-    blocTest<BreedBloc, BreedState>(
+    blocTest<BreedsBloc, BreedsState>(
       'should emit [Loading, Loaded] when the request has failed',
       setUp: () {
         when(() => repository.getBreeds()).thenAnswer(
           (_) async => Result<List<BreedInfo>>.error(ServerFailure()),
         );
       },
-      build: () => BreedBloc(repository: repository),
+      build: () => BreedsBloc(repository: repository),
       expect: () => [
-        const BreedLoadingState(),
-        const BreedErrorState(message: serverFailureMessage),
+        const BreedsLoadingState(),
+        const BreedsErrorState(message: serverFailureMessage),
       ],
     );
   });

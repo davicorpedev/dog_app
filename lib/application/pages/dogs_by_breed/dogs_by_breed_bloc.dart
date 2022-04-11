@@ -10,17 +10,17 @@ part 'dogs_by_breed_event.dart';
 part 'dogs_by_breed_state.dart';
 
 class DogsByBreedBloc extends Bloc<DogsByBreedEvent, DogsByBreedState> {
-  final ID<Breed> _breedId;
+  final ID<Breed> _breedID;
   final DogRepository _repository;
 
   DogsByBreedBloc({
-    required ID<Breed> breedId,
+    required ID<Breed> breedID,
     required DogRepository repository,
   })  : _repository = repository,
-        _breedId = breedId,
+        _breedID = breedID,
         super(const DogsByBreedInitialState()) {
     on<GetDogsByBreedEvent>(_onGetDogsByBreed);
-    add(GetDogsByBreedEvent(breedId: _breedId));
+    add(GetDogsByBreedEvent(breedID: _breedID));
   }
 
   void _onGetDogsByBreed(
@@ -29,7 +29,7 @@ class DogsByBreedBloc extends Bloc<DogsByBreedEvent, DogsByBreedState> {
   ) async {
     emit(const DogsByBreedLoadingState());
 
-    final result = await _repository.getDogsByBreed(event.breedId);
+    final result = await _repository.getDogsByBreed(event.breedID);
 
     result.when(
       success: (dogs) {

@@ -33,17 +33,17 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const BreedsPage());
     },
-    DogDetailRoute.name: (routeData) {
-      final args = routeData.argsAs<DogDetailRouteArgs>();
-      return MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: DogDetailPage(key: args.key, dog: args.dog));
-    },
     DogsByBreedRoute.name: (routeData) {
       final args = routeData.argsAs<DogsByBreedRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData,
-          child: DogsByBreedPage(key: args.key, breed: args.breed),
+          child: DogsByBreedPage(key: args.key, breed: args.breed));
+    },
+    DogDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<DogDetailRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: DogDetailPage(key: args.key, dog: args.dog),
           fullscreenDialog: true);
     }
   };
@@ -55,10 +55,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(BreedsFlowRoute.name, path: '/breeds-flow', children: [
           RouteConfig(BreedsRoute.name,
               path: 'breeds-page', parent: BreedsFlowRoute.name),
-          RouteConfig(DogDetailRoute.name,
-              path: 'dog-detail-page', parent: BreedsFlowRoute.name),
           RouteConfig(DogsByBreedRoute.name,
-              path: 'dogs-by-breed-page', parent: BreedsFlowRoute.name)
+              path: 'dogs-by-breed-page', parent: BreedsFlowRoute.name),
+          RouteConfig(DogDetailRoute.name,
+              path: 'dog-detail-page', parent: BreedsFlowRoute.name)
         ])
       ];
 }
@@ -99,30 +99,6 @@ class BreedsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [DogDetailPage]
-class DogDetailRoute extends PageRouteInfo<DogDetailRouteArgs> {
-  DogDetailRoute({Key? key, required Dog dog})
-      : super(DogDetailRoute.name,
-            path: 'dog-detail-page',
-            args: DogDetailRouteArgs(key: key, dog: dog));
-
-  static const String name = 'DogDetailRoute';
-}
-
-class DogDetailRouteArgs {
-  const DogDetailRouteArgs({this.key, required this.dog});
-
-  final Key? key;
-
-  final Dog dog;
-
-  @override
-  String toString() {
-    return 'DogDetailRouteArgs{key: $key, dog: $dog}';
-  }
-}
-
-/// generated route for
 /// [DogsByBreedPage]
 class DogsByBreedRoute extends PageRouteInfo<DogsByBreedRouteArgs> {
   DogsByBreedRoute({Key? key, required Breed breed})
@@ -143,5 +119,29 @@ class DogsByBreedRouteArgs {
   @override
   String toString() {
     return 'DogsByBreedRouteArgs{key: $key, breed: $breed}';
+  }
+}
+
+/// generated route for
+/// [DogDetailPage]
+class DogDetailRoute extends PageRouteInfo<DogDetailRouteArgs> {
+  DogDetailRoute({Key? key, required Dog dog})
+      : super(DogDetailRoute.name,
+            path: 'dog-detail-page',
+            args: DogDetailRouteArgs(key: key, dog: dog));
+
+  static const String name = 'DogDetailRoute';
+}
+
+class DogDetailRouteArgs {
+  const DogDetailRouteArgs({this.key, required this.dog});
+
+  final Key? key;
+
+  final Dog dog;
+
+  @override
+  String toString() {
+    return 'DogDetailRouteArgs{key: $key, dog: $dog}';
   }
 }

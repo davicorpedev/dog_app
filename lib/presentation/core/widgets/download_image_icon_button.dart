@@ -1,7 +1,7 @@
+import 'package:dog_app/application/pages/download_image/download_image_cubit.dart';
 import 'package:dog_app/domain/repositories/url_downloader_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dog_app/application/download_image/download_image_cubit.dart';
 
 class DownloadImageIconButton extends StatelessWidget {
   final String url;

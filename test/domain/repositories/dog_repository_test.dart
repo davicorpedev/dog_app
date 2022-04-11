@@ -30,7 +30,7 @@ void main() {
   });
 
   group('getDogsByBreed', () {
-    const tBreedId = ID<Breed>('1');
+    const tBreedID = ID<Breed>('1');
 
     setUpAll(() {
       registerFallbackValue(ID<Breed>);
@@ -58,11 +58,11 @@ void main() {
       'should check if the device is online',
       () {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getDogsByBreed(tBreedId)).thenAnswer(
+        when(() => dataSource.getDogsByBreed(tBreedID)).thenAnswer(
           (_) async => tDogModelList,
         );
 
-        repository.getDogsByBreed(tBreedId);
+        repository.getDogsByBreed(tBreedID);
 
         verify(() => networkInfo.isConnected).called(1);
       },
@@ -72,13 +72,13 @@ void main() {
       'should return data when the call is successful',
       () async {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getDogsByBreed(tBreedId)).thenAnswer(
+        when(() => dataSource.getDogsByBreed(tBreedID)).thenAnswer(
           (_) async => tDogModelList,
         );
 
-        final result = await repository.getDogsByBreed(tBreedId);
+        final result = await repository.getDogsByBreed(tBreedID);
 
-        verify(() => dataSource.getDogsByBreed(tBreedId)).called(1);
+        verify(() => dataSource.getDogsByBreed(tBreedID)).called(1);
         expect(
           result,
           Result<List<Dog>>.success(tDogList),
@@ -90,13 +90,13 @@ void main() {
       'should return a ServerFailure when the request has failed',
       () async {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getDogsByBreed(tBreedId)).thenThrow(
+        when(() => dataSource.getDogsByBreed(tBreedID)).thenThrow(
           ServerException(),
         );
 
-        final result = await repository.getDogsByBreed(tBreedId);
+        final result = await repository.getDogsByBreed(tBreedID);
 
-        verify(() => dataSource.getDogsByBreed(tBreedId)).called(1);
+        verify(() => dataSource.getDogsByBreed(tBreedID)).called(1);
         expect(
           result,
           Result<List<Dog>>.error(ServerFailure()),
@@ -109,9 +109,9 @@ void main() {
       () async {
         networkInfo.runTestsOffline();
 
-        final result = await repository.getDogsByBreed(tBreedId);
+        final result = await repository.getDogsByBreed(tBreedID);
 
-        verifyNever(() => dataSource.getDogsByBreed(tBreedId)).called(0);
+        verifyNever(() => dataSource.getDogsByBreed(tBreedID)).called(0);
         expect(
           result,
           Result<List<Dog>>.error(NetworkFailure()),

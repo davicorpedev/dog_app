@@ -1,4 +1,4 @@
-import 'package:dog_app/application/breed/breed_bloc.dart';
+import 'package:dog_app/application/pages/breeds/breeds_bloc.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
 import 'package:dog_app/presentation/navigation/navigator.dart';
 import 'package:dog_app/presentation/pages/breed/widgets/breed_grid.dart';
@@ -46,16 +46,16 @@ class BreedsPage extends StatelessWidget {
             ),
           ),
           BlocProvider(
-            create: (context) => BreedBloc(
+            create: (context) => BreedsBloc(
               repository: RepositoryProvider.of<BreedRepository>(context),
             ),
-            child: BlocBuilder<BreedBloc, BreedState>(
+            child: BlocBuilder<BreedsBloc, BreedsState>(
               builder: (context, state) {
-                if (state is BreedLoadedState) {
+                if (state is BreedsLoadedState) {
                   return SliverToBoxAdapter(
                     child: BreedGrid(breeds: state.breeds),
                   );
-                } else if (state is BreedErrorState) {
+                } else if (state is BreedsErrorState) {
                   return SliverFillRemaining(
                     child: Center(child: Text(state.message)),
                   );
