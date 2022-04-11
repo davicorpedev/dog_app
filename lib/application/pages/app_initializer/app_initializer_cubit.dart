@@ -9,10 +9,14 @@ class AppInitializerCubit extends Cubit<AppInitializerState> {
   Future<void> initializeTasks(
     Future<void> Function() initializationTasks,
   ) async {
-    emit(AppInitializerLoadingState());
+    try {
+      emit(AppInitializerLoadingState());
 
-    await initializationTasks();
+      await initializationTasks();
 
-    emit(AppInitializerLoadedState());
+      emit(AppInitializerLoadedState());
+    } catch (e) {
+      emit(AppInitializerErrorState());
+    }
   }
 }

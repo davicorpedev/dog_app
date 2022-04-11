@@ -21,9 +21,9 @@ part 'app_router.gr.dart';
       page: BreedsFlow,
       children: [
         AutoRoute(page: BreedsPage),
-        AutoRoute(page: DogDetailPage),
+        AutoRoute(page: DogsByBreedPage),
         AutoRoute(
-          page: DogsByBreedPage,
+          page: DogDetailPage,
           fullscreenDialog: true,
         ),
       ],

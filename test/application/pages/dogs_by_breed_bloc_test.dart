@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dog_app/application/dogs_by_breed/dogs_by_breed_bloc.dart';
+import 'package:dog_app/application/pages/dogs_by_breed/dogs_by_breed_bloc.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';
@@ -20,7 +20,7 @@ void main() {
   });
 
   group('GetDogsByBreed', () {
-    const tBreedId = ID<Breed>('1');
+    const tBreedID = ID<Breed>('1');
 
     const tDogList = [
       Dog(
@@ -41,29 +41,29 @@ void main() {
     blocTest<DogsByBreedBloc, DogsByBreedState>(
       'should get the data from the repository',
       setUp: () {
-        when(() => repository.getDogsByBreed(tBreedId)).thenAnswer(
+        when(() => repository.getDogsByBreed(tBreedID)).thenAnswer(
           (_) async => const Result<List<Dog>>.success(tDogList),
         );
       },
       build: () => DogsByBreedBloc(
         repository: repository,
-        breedId: tBreedId,
+        breedID: tBreedID,
       ),
       verify: (bloc) {
-        verify(() => repository.getDogsByBreed(tBreedId)).called(1);
+        verify(() => repository.getDogsByBreed(tBreedID)).called(1);
       },
     );
 
     blocTest<DogsByBreedBloc, DogsByBreedState>(
       'should emit [Loading, Loaded] when the request has succeded',
       setUp: () {
-        when(() => repository.getDogsByBreed(tBreedId)).thenAnswer(
+        when(() => repository.getDogsByBreed(tBreedID)).thenAnswer(
           (_) async => const Result<List<Dog>>.success(tDogList),
         );
       },
       build: () => DogsByBreedBloc(
         repository: repository,
-        breedId: tBreedId,
+        breedID: tBreedID,
       ),
       expect: () => [
         const DogsByBreedLoadingState(),
@@ -74,13 +74,13 @@ void main() {
     blocTest<DogsByBreedBloc, DogsByBreedState>(
       'should emit [Loading, Error] when the request has failed',
       setUp: () {
-        when(() => repository.getDogsByBreed(tBreedId)).thenAnswer(
+        when(() => repository.getDogsByBreed(tBreedID)).thenAnswer(
           (_) async => Result<List<Dog>>.error(ServerFailure()),
         );
       },
       build: () => DogsByBreedBloc(
         repository: repository,
-        breedId: tBreedId,
+        breedID: tBreedID,
       ),
       expect: () => [
         const DogsByBreedLoadingState(),

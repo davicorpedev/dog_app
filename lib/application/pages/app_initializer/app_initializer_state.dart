@@ -10,3 +10,5 @@ class AppInitializerInitialState extends AppInitializerState {}
 class AppInitializerLoadingState extends AppInitializerState {}
 
 class AppInitializerLoadedState extends AppInitializerState {}
+
+class AppInitializerErrorState extends AppInitializerState {}

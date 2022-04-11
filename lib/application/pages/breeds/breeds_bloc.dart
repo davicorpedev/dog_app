@@ -4,34 +4,34 @@ import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
 import 'package:equatable/equatable.dart';
 
-part 'breed_event.dart';
-part 'breed_state.dart';
+part 'breeds_event.dart';
+part 'breeds_state.dart';
 
-class BreedBloc extends Bloc<BreedEvent, BreedState> {
+class BreedsBloc extends Bloc<BreedsEvent, BreedsState> {
   final BreedRepository _repository;
 
-  BreedBloc({
+  BreedsBloc({
     required BreedRepository repository,
   })  : _repository = repository,
-        super(const BreedInitialState()) {
+        super(const BreedsInitialState()) {
     on<GetBreedsEvent>(_onGetBreeds);
     add(GetBreedsEvent());
   }
 
   void _onGetBreeds(
     GetBreedsEvent event,
-    Emitter<BreedState> emit,
+    Emitter<BreedsState> emit,
   ) async {
-    emit(const BreedLoadingState());
+    emit(const BreedsLoadingState());
 
     final result = await _repository.getBreeds();
 
     result.when(
       success: (breeds) {
-        emit(BreedLoadedState(breeds: breeds));
+        emit(BreedsLoadedState(breeds: breeds));
       },
       error: (failure) {
-        emit(BreedErrorState(message: mapFailureToMessage(failure)));
+        emit(BreedsErrorState(message: mapFailureToMessage(failure)));
       },
     );
   }

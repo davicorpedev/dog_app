@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dog_app/application/random_dog/random_dog_bloc.dart';
+import 'package:dog_app/application/pages/random_dog/random_dog_bloc.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/core/entitites/result.dart';
 import 'package:dog_app/domain/core/error/failures.dart';

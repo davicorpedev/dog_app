@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:dog_app/domain/entities/dog.dart';
+import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
 import 'package:dog_app/presentation/core/widgets/download_image_icon_button.dart';
+import 'package:flutter/material.dart';
 
 class DogDetailPage extends StatelessWidget {
   final Dog dog;
@@ -20,7 +21,7 @@ class DogDetailPage extends StatelessWidget {
           padding: const EdgeInsets.all(4.0),
           child: Hero(
             tag: dog.id,
-            child: Image.network(dog.url),
+            child: CustomCachedNetworkImage(imageURL: dog.url),
           ),
         ),
       ),

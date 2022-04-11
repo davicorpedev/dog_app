@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dog_app/application/breeds_flow/breeds_flow_cubit.dart';
+import 'package:dog_app/application/navigation/breeds_flow/breeds_flow_cubit.dart';
 import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/domain/entities/dog.dart';
