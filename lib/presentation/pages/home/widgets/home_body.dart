@@ -82,12 +82,12 @@ class HomeBody extends StatelessWidget {
   }
 
   void _launchURL() async {
-    const url = 'https://thedogapi.com';
+    final uri = Uri(path: 'https://thedogapi.com');
 
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
-      throw 'Could not launch $url';
+      throw 'Could not launch ${uri.path}';
     }
   }
 }
