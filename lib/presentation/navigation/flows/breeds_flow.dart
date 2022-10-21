@@ -19,7 +19,7 @@ class _BreedsFlowState extends State<BreedsFlow> {
       child: BlocBuilder<BreedsFlowCubit, BreedsFlowState>(
         builder: (context, state) {
           return AutoRouter.declarative(
-            routes: (context) => _getPages(context, state),
+            routes: (handler) => _getPages(state),
             onPopRoute: (_, __) {
               context.read<BreedsFlowCubit>().back();
             },
@@ -29,7 +29,7 @@ class _BreedsFlowState extends State<BreedsFlow> {
     );
   }
 
-  List<PageRouteInfo> _getPages(BuildContext context, BreedsFlowState state) {
+  List<PageRouteInfo> _getPages(BreedsFlowState state) {
     List<PageRouteInfo> pages = [const BreedsRoute()];
 
     switch (state.currentScreen) {
