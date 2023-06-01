@@ -1,10 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dog_app/application/pages/random_dog/random_dog_bloc.dart';
-import 'package:dog_app/domain/core/entitites/id.dart';
-import 'package:dog_app/domain/core/entitites/result.dart';
-import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/dog.dart';
 import 'package:dog_app/domain/entities/dog_breed.dart';
+import 'package:dog_app/domain/entities/id.dart';
+import 'package:dog_app/domain/entities/result.dart';
+import 'package:dog_app/domain/error/failures.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

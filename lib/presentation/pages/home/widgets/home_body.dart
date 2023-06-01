@@ -1,6 +1,6 @@
-import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
 import 'package:dog_app/presentation/navigation/app_router.dart';
 import 'package:dog_app/presentation/navigation/navigator.dart';
+import 'package:dog_app/presentation/widgets/custom_cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,19 +27,19 @@ class HomeBody extends StatelessWidget {
         ListTile(
           title: Text(
             'Hello',
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
         ),
         ListTile(
           title: Text(
             'Hooman',
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
         ),
         ListTile(
           title: Text(
             'Search between the different breeds of dogs and find your favorites',
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
         ListTile(
@@ -47,7 +47,7 @@ class HomeBody extends StatelessWidget {
             text: TextSpan(
               text:
                   "If you don't care about the breed and just want to see a random dog. ",
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
               children: [
                 TextSpan(
                   text: 'Click here',
@@ -66,7 +66,7 @@ class HomeBody extends StatelessWidget {
           title: RichText(
             text: TextSpan(
               text: 'This app was made thanks to ',
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
               children: <TextSpan>[
                 TextSpan(
                   text: 'thedogapi.com',

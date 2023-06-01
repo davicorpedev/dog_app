@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:dog_app/data/core/client/api_result.dart';
-import 'package:dog_app/data/core/error/exceptions.dart';
+import 'package:dog_app/data/client/api_result.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
+import 'package:dog_app/data/error/exceptions.dart';
 import 'package:dog_app/data/models/dog_breed_model.dart';
 import 'package:dog_app/data/models/dog_model.dart';
-import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/entities/breed.dart';
+import 'package:dog_app/domain/entities/id.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

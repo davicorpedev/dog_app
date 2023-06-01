@@ -1,6 +1,6 @@
-import 'package:dog_app/domain/core/entitites/result.dart';
-import 'package:dog_app/domain/core/error/failures.dart';
-import 'package:dog_app/domain/core/utils/dog_image_downloader.dart';
+import 'package:dog_app/domain/entities/result.dart';
+import 'package:dog_app/domain/error/failures.dart';
+import 'package:dog_app/domain/utils/dog_image_downloader.dart';
 import 'package:flutter/services.dart';
 
 abstract class UrlDownloaderRepository {

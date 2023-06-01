@@ -1,4 +1,4 @@
-import 'package:dog_app/data/core/client/api_result.dart';
+import 'package:dog_app/data/client/api_result.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

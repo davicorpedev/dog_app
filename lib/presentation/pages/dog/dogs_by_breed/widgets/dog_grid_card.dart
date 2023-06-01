@@ -1,6 +1,6 @@
 import 'package:dog_app/application/navigation/breeds_flow/breeds_flow_cubit.dart';
 import 'package:dog_app/domain/entities/dog.dart';
-import 'package:dog_app/presentation/core/widgets/custom_cached_network_image.dart';
+import 'package:dog_app/presentation/widgets/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,4 +1,4 @@
-import 'package:dog_app/data/core/client/api_client.dart';
+import 'package:dog_app/data/client/api_client.dart';
 import 'package:dog_app/data/datasources/breed_data_source.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
 import 'package:flutter/material.dart';

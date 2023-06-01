@@ -1,4 +1,4 @@
-import 'package:dog_app/domain/core/error/failures.dart';
+import 'package:dog_app/domain/error/failures.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

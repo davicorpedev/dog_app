@@ -4,6 +4,7 @@ import 'package:dog_app/presentation/navigation/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage(name: 'BreedsFlowRoute')
 class BreedsFlow extends StatefulWidget {
   const BreedsFlow({Key? key}) : super(key: key);
 

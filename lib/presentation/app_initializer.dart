@@ -1,5 +1,5 @@
 import 'package:dog_app/application/pages/app_initializer/app_initializer_cubit.dart';
-import 'package:dog_app/presentation/core/widgets/app_error.dart';
+import 'package:dog_app/presentation/widgets/app_error.dart';
 import 'package:dog_app/presentation/pages/app_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

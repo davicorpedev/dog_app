@@ -1,5 +1,5 @@
-import 'package:dog_app/domain/core/entitites/id.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
+import 'package:dog_app/domain/entities/id.dart';
 
 class BreedInfoModel extends BreedInfo {
   const BreedInfoModel({

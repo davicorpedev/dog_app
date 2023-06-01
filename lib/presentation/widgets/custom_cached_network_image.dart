@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CustomCachedNetworkImage extends StatelessWidget {
@@ -11,12 +10,23 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
+    /*return CachedNetworkImage(
       imageUrl: imageURL,
       placeholder: (context, url) => const Padding(
         padding: EdgeInsets.all(8.0),
         child: Center(child: CircularProgressIndicator()),
       ),
+    );*/
+    return Image.network(
+      imageURL,
+      loadingBuilder: (_, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+
+        return const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Center(child: CircularProgressIndicator()),
+        );
+      },
     );
   }
 }

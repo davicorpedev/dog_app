@@ -1,10 +1,10 @@
-import 'package:bloc/bloc.dart';
-import 'package:dog_app/domain/core/entitites/id.dart';
-import 'package:dog_app/domain/core/error/failures.dart';
 import 'package:dog_app/domain/entities/breed.dart';
 import 'package:dog_app/domain/entities/dog.dart';
+import 'package:dog_app/domain/entities/id.dart';
+import 'package:dog_app/domain/error/failures.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'dogs_by_breed_event.dart';
 part 'dogs_by_breed_state.dart';
