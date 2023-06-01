@@ -1,4 +1,4 @@
-import 'package:dog_app/domain/core/entitites/id.dart';
+import 'package:dog_app/domain/entities/id.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class Breed extends Equatable {

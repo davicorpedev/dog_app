@@ -1,6 +1,6 @@
-import 'package:dog_app/data/core/client/api_client.dart';
-import 'package:dog_app/data/core/client/api_result.dart';
-import 'package:dog_app/data/core/error/exceptions.dart';
+import 'package:dog_app/data/client/api_client.dart';
+import 'package:dog_app/data/client/api_result.dart';
+import 'package:dog_app/data/error/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';

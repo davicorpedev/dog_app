@@ -1,10 +1,10 @@
 import 'package:dog_app/data/datasources/breed_data_source.dart';
 import 'package:dog_app/data/datasources/dog_data_source.dart';
-import 'package:dog_app/domain/core/utils/dog_image_downloader.dart';
-import 'package:dog_app/domain/core/utils/network_info.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
 import 'package:dog_app/domain/repositories/url_downloader_repository.dart';
+import 'package:dog_app/domain/utils/dog_image_downloader.dart';
+import 'package:dog_app/domain/utils/network_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';

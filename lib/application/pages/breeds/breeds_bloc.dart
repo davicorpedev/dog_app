@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
-import 'package:dog_app/domain/core/error/failures.dart';
+import 'package:dog_app/domain/error/failures.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'breeds_event.dart';
 part 'breeds_state.dart';

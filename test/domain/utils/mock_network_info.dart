@@ -1,4 +1,4 @@
-import 'package:dog_app/domain/core/utils/network_info.dart';
+import 'package:dog_app/domain/utils/network_info.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}

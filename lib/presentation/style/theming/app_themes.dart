@@ -15,7 +15,6 @@ class AppThemes {
     scaffoldBackgroundColor: const Color(0xFFf9eed9),
     dialogBackgroundColor: const Color(0xFFf9eed9),
     canvasColor: const Color(0xFFf9eed9),
-    errorColor: Colors.red,
     unselectedWidgetColor: const Color(0xFFf9eed9),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Color(0xFF5a3a1a),
@@ -48,25 +47,25 @@ class AppThemes {
       ),
     ),
     textTheme: const TextTheme(
-      headline5: TextStyle(
+      headlineSmall: TextStyle(
         color: Color(0xFF5a3a1a),
       ),
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         color: Color(0xFF5a3a1a),
       ),
-      headline3: TextStyle(
+      displaySmall: TextStyle(
         color: Color(0xFF5a3a1a),
       ),
-      subtitle1: TextStyle(
+      titleMedium: TextStyle(
         color: Color(0xFF5a3a1a),
       ),
-      subtitle2: TextStyle(
+      titleSmall: TextStyle(
         color: Color(0xFF5a3a1a),
       ),
-      bodyText1: TextStyle(
+      bodyLarge: TextStyle(
         color: Color(0xFF5a3a1a),
       ),
-      bodyText2: TextStyle(
+      bodyMedium: TextStyle(
         color: Color(0xFF5a3a1a),
       ),
     ),

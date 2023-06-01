@@ -1,10 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dog_app/application/pages/random_dog/random_dog_bloc.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
-import 'package:dog_app/presentation/core/widgets/download_image_icon_button.dart';
+import 'package:dog_app/presentation/widgets/download_image_icon_button.dart';
 import 'package:dog_app/presentation/pages/dog/random_dog_detail/widgets/random_dog_detail_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage<String>()
 class RandomDogDetailPage extends StatelessWidget {
   const RandomDogDetailPage({Key? key}) : super(key: key);
 

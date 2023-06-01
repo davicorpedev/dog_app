@@ -1,5 +1,5 @@
 import 'package:dog_app/application/pages/random_dog/random_dog_bloc.dart';
-import 'package:dog_app/presentation/core/widgets/breed_info_layout.dart';
+import 'package:dog_app/presentation/widgets/breed_info_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

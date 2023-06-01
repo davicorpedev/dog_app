@@ -11,23 +11,22 @@ import 'package:flutter/material.dart';
 
 part 'app_router.gr.dart';
 
-@MaterialAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
-    AutoRoute(page: HomePage, initial: true),
-    AutoRoute(page: RandomDogDetailPage),
-    AutoRoute(
-      name: 'BreedsFlowRoute',
-      page: BreedsFlow,
-      children: [
-        AutoRoute(page: BreedsPage),
-        AutoRoute(page: DogsByBreedPage),
+@AutoRouterConfig()
+class AppRouter extends _$AppRouter {
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(page: HomeRoute.page, initial: true),
+        AutoRoute(page: RandomDogDetailRoute.page),
         AutoRoute(
-          page: DogDetailPage,
-          fullscreenDialog: true,
+          page: BreedsFlowRoute.page,
+          children: [
+            AutoRoute(page: BreedsRoute.page),
+            AutoRoute(page: DogsByBreedRoute.page),
+            AutoRoute(
+              page: DogDetailRoute.page,
+              fullscreenDialog: true,
+            ),
+          ],
         ),
-      ],
-    ),
-  ],
-)
-class AppRouter extends _$AppRouter {}
+      ];
+}

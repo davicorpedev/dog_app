@@ -1,19 +1,19 @@
-import 'package:global_configuration/global_configuration.dart';
+import 'package:global_configs/global_configs.dart';
 
 class AppGlobalConfig {
   Future<void> setupConfiguration() async {
-    await GlobalConfiguration().loadFromPath('config/config.json');
+    await GlobalConfigs().loadJsonFromdir('config/config.json');
   }
 
   String get apiKey {
-    return GlobalConfiguration().getValue('api_key');
+    return GlobalConfigs().get('api_key');
   }
 
   String get baseUrl {
-    return GlobalConfiguration().getValue('base_url');
+    return GlobalConfigs().get('base_url');
   }
 
   String get serverVersion {
-    return GlobalConfiguration().getValue('server_version');
+    return GlobalConfigs().get('server_version');
   }
 }

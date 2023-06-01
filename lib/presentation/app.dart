@@ -1,7 +1,7 @@
 import 'package:dog_app/config/global_config.dart';
-import 'package:dog_app/data/core/client/api_client.dart';
+import 'package:dog_app/data/client/api_client.dart';
 import 'package:dog_app/presentation/app_initializer.dart';
-import 'package:dog_app/presentation/core/theming/app_themes.dart';
+import 'package:dog_app/presentation/style/theming/app_themes.dart';
 import 'package:dog_app/presentation/data_source_builder.dart';
 import 'package:dog_app/presentation/navigation/app_router.dart';
 import 'package:dog_app/presentation/repository_builder.dart';
@@ -25,8 +25,7 @@ class _AppState extends State<App> {
     return MaterialApp.router(
       title: 'DogApp',
       theme: AppThemes.appTheme,
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerConfig: _appRouter.config(),
       builder: (context, widget) {
         return AppInitializer(
           initializeTasks: () async {

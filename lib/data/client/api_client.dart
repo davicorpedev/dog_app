@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:dog_app/data/core/client/api_result.dart';
-import 'package:dog_app/data/core/error/exceptions.dart';
+import 'package:dog_app/data/client/api_result.dart';
+import 'package:dog_app/data/error/exceptions.dart';
 import 'package:http/http.dart' as http;
 
 abstract class ApiClient {
