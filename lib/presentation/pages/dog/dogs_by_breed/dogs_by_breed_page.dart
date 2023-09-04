@@ -2,8 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dog_app/application/pages/dogs_by_breed/dogs_by_breed_bloc.dart';
 import 'package:dog_app/domain/entities/breed.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
-import 'package:dog_app/presentation/widgets/breed_info_layout.dart';
 import 'package:dog_app/presentation/pages/dog/dogs_by_breed/widgets/dog_grid.dart';
+import 'package:dog_app/presentation/widgets/breed_info_layout.dart';
+import 'package:dog_app/presentation/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,7 +43,7 @@ class DogsByBreedPage extends StatelessWidget {
                 }
 
                 return const SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator()),
+                  child: Center(child: CustomCircularProgressIndicator()),
                 );
               },
             ),

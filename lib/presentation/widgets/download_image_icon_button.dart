@@ -1,5 +1,6 @@
 import 'package:dog_app/application/pages/download_image/download_image_cubit.dart';
 import 'package:dog_app/domain/repositories/url_downloader_repository.dart';
+import 'package:dog_app/presentation/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,7 +32,7 @@ class DownloadImageIconButton extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is DownloadImageLoadingState) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CustomCircularProgressIndicator());
           }
 
           return IconButton(

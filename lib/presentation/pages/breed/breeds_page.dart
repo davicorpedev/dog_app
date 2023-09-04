@@ -3,6 +3,7 @@ import 'package:dog_app/application/pages/breeds/breeds_bloc.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
 import 'package:dog_app/presentation/navigation/navigator.dart';
 import 'package:dog_app/presentation/pages/breed/widgets/breed_grid.dart';
+import 'package:dog_app/presentation/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -64,7 +65,7 @@ class BreedsPage extends StatelessWidget {
                 }
 
                 return const SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator()),
+                  child: Center(child: CustomCircularProgressIndicator()),
                 );
               },
             ),

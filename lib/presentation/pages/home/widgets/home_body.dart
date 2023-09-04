@@ -82,7 +82,7 @@ class HomeBody extends StatelessWidget {
   }
 
   void _launchURL() async {
-    final uri = Uri(path: 'https://thedogapi.com');
+    final uri = Uri.parse('https://thedogapi.com');
 
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);

@@ -99,7 +99,7 @@ class HttpApiClient extends ApiClient {
       if (response.statusCode == 200) {
         final decodedResponse = json.decode(response.body);
 
-        return DogModel.fromJson(decodedResponse);
+        return DogModel.fromJson(decodedResponse[0]);
       } else {
         throw ServerException();
       }

@@ -12,12 +12,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: ConstrainedBox(
-        constraints: BoxConstraints(
-          minWidth: MediaQuery.of(context).size.width,
-        ),
-        child: const Padding(
+      body: const SafeArea(
+        child: Padding(
           padding: EdgeInsets.all(16),
           child: HomeBody(),
         ),

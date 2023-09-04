@@ -17,25 +17,36 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  late ApiClient _apiClient;
-  final _appRouter = AppRouter();
+  late final ApiClient _apiClient;
+  late final AppTheme _appTheme;
+  final AppRouter _appRouter = AppRouter();
+
+  @override
+  void initState() {
+    _appTheme = LightTheme();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'DogApp',
-      theme: LightTheme().themeData,
+      theme: _appTheme.themeData,
       routerConfig: _appRouter.config(),
       builder: (context, widget) {
-        return AppInitializer(
-          initializeTasks: () async {
-            await _setupConfiguration();
-          },
-          initalizedBuilder: (context) => Provider.value(
-            value: _apiClient,
-            child: RepositoryBuilder(
-              apiClient: _apiClient,
-              child: widget!,
+        return Provider<AppTheme>.value(
+          value: _appTheme,
+          child: AppInitializer(
+            initializeTasks: () async {
+              await _setupConfiguration();
+            },
+            initalizedBuilder: (context) => Provider<ApiClient>.value(
+              value: _apiClient,
+              child: RepositoryBuilder(
+                apiClient: _apiClient,
+                child: widget!,
+              ),
             ),
           ),
         );

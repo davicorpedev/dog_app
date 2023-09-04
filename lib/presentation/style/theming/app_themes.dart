@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 abstract class AppTheme {
   late final Color primary;
   late final Color secondary;
+  late final Color background;
   late final TextTheme textTheme;
   late final Brightness brightness;
 }
@@ -13,6 +14,9 @@ class LightTheme implements AppTheme {
 
   @override
   Color secondary = const Color(0xFF5a3a1a);
+
+  @override
+  Color background = const Color(0xFFf9eed9);
 
   @override
   TextTheme textTheme = const TextTheme(

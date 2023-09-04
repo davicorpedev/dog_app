@@ -1,7 +1,9 @@
-import 'package:image_downloader/image_downloader.dart';
+// TODO: implement downloader
+
+//import 'package:image_downloader/image_downloader.dart';
 
 class DogImageDownloader {
   Future<void> download(String url) async {
-    await ImageDownloader.downloadImage(url);
+    // await ImageDownloader.downloadImage(url);
   }
 }
