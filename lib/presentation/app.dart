@@ -1,10 +1,10 @@
 import 'package:dog_app/config/global_config.dart';
 import 'package:dog_app/data/client/api_client.dart';
 import 'package:dog_app/presentation/app_initializer.dart';
-import 'package:dog_app/presentation/style/theming/app_themes.dart';
-import 'package:dog_app/presentation/data_source_builder.dart';
 import 'package:dog_app/presentation/navigation/app_router.dart';
 import 'package:dog_app/presentation/repository_builder.dart';
+import 'package:dog_app/presentation/style/theming/app_themes.dart';
+import 'package:dog_app/presentation/style/theming/theme_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -24,7 +24,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'DogApp',
-      theme: AppThemes.appTheme,
+      theme: LightTheme().themeData,
       routerConfig: _appRouter.config(),
       builder: (context, widget) {
         return AppInitializer(
@@ -33,11 +33,9 @@ class _AppState extends State<App> {
           },
           initalizedBuilder: (context) => Provider.value(
             value: _apiClient,
-            child: DataSourceBuilder(
+            child: RepositoryBuilder(
               apiClient: _apiClient,
-              child: RepositoryBuilder(
-                child: widget!,
-              ),
+              child: widget!,
             ),
           ),
         );
@@ -50,7 +48,7 @@ class _AppState extends State<App> {
 
     await config.setupConfiguration();
 
-    _apiClient = LiveApiClient(
+    _apiClient = HttpApiClient(
       client: http.Client(),
       baseUrl: config.baseUrl,
       serverVersion: config.serverVersion,

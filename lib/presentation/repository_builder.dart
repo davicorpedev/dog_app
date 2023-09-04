@@ -1,5 +1,4 @@
-import 'package:dog_app/data/datasources/breed_data_source.dart';
-import 'package:dog_app/data/datasources/dog_data_source.dart';
+import 'package:dog_app/data/client/api_client.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
 import 'package:dog_app/domain/repositories/dog_repository.dart';
 import 'package:dog_app/domain/repositories/url_downloader_repository.dart';
@@ -11,11 +10,13 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
 class RepositoryBuilder extends StatelessWidget {
+  final ApiClient apiClient;
   final Widget child;
 
   const RepositoryBuilder({
     Key? key,
     required this.child,
+    required this.apiClient,
   }) : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class RepositoryBuilder extends StatelessWidget {
       providers: [
         RepositoryProvider<DogRepository>(
           create: (context) => DogRepositoryImpl(
-            dataSource: RepositoryProvider.of<DogDataSource>(context),
+            apiClient: apiClient,
             networkInfo: NetworkInfo(
               connectionChecker: InternetConnectionChecker(),
             ),
@@ -32,7 +33,7 @@ class RepositoryBuilder extends StatelessWidget {
         ),
         RepositoryProvider<BreedRepository>(
           create: (context) => BreedRepositoryImpl(
-            dataSource: RepositoryProvider.of<BreedDataSource>(context),
+            apiClient: apiClient,
             networkInfo: NetworkInfo(
               connectionChecker: InternetConnectionChecker(),
             ),

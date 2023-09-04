@@ -1,4 +1,4 @@
-import 'package:dog_app/data/datasources/dog_data_source.dart';
+import 'package:dog_app/data/client/api_client.dart';
 import 'package:dog_app/data/error/exceptions.dart';
 import 'package:dog_app/domain/entities/breed.dart';
 import 'package:dog_app/domain/entities/dog.dart';
@@ -14,19 +14,19 @@ abstract class DogRepository {
 
 class DogRepositoryImpl extends DogRepository {
   final NetworkInfo _networkInfo;
-  final DogDataSource _dataSource;
+  final ApiClient _apiClient;
 
   DogRepositoryImpl({
     required NetworkInfo networkInfo,
-    required DogDataSource dataSource,
+    required ApiClient apiClient,
   })  : _networkInfo = networkInfo,
-        _dataSource = dataSource;
+        _apiClient = apiClient;
 
   @override
   Future<Result<List<Dog>>> getDogsByBreed(ID<Breed> id) async {
     if (await _networkInfo.isConnected) {
       try {
-        final result = await _dataSource.getDogsByBreed(id);
+        final result = await _apiClient.getDogsByBreed(id);
 
         return Result.success(result);
       } on ServerException {
@@ -41,7 +41,7 @@ class DogRepositoryImpl extends DogRepository {
   Future<Result<Dog>> getRandomDog() async {
     if (await _networkInfo.isConnected) {
       try {
-        final result = await _dataSource.getRandomDog();
+        final result = await _apiClient.getRandomDog();
 
         return Result.success(result);
       } on ServerException {
