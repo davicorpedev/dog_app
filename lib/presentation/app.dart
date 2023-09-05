@@ -1,5 +1,6 @@
 import 'package:dog_app/config/global_config.dart';
 import 'package:dog_app/data/client/api_client.dart';
+import 'package:dog_app/data/client/api_requester.dart';
 import 'package:dog_app/presentation/app_initializer.dart';
 import 'package:dog_app/presentation/navigation/app_router.dart';
 import 'package:dog_app/presentation/repository_builder.dart';
@@ -59,11 +60,13 @@ class _AppState extends State<App> {
 
     await config.setupConfiguration();
 
-    _apiClient = HttpApiClient(
-      client: http.Client(),
-      baseUrl: config.baseUrl,
-      serverVersion: config.serverVersion,
-      apiKey: config.apiKey,
+    _apiClient = LiveApiClient(
+      apiRequester: HttpApiRequester(
+        client: http.Client(),
+        baseUrl: config.baseUrl,
+        serverVersion: config.serverVersion,
+        apiKey: config.apiKey,
+      ),
     );
   }
 }
