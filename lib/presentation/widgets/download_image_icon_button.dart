@@ -1,5 +1,5 @@
 import 'package:dog_app/application/pages/download_image/download_image_cubit.dart';
-import 'package:dog_app/domain/repositories/url_downloader_repository.dart';
+import 'package:dog_app/domain/repositories/download_image_repository.dart';
 import 'package:dog_app/presentation/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +14,7 @@ class DownloadImageIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<DownloadImageCubit>(
       create: (context) => DownloadImageCubit(
-        repository: RepositoryProvider.of<UrlDownloaderRepository>(context),
+        repository: RepositoryProvider.of<DownloadImageRepository>(context),
       ),
       child: BlocConsumer<DownloadImageCubit, DownloadImageState>(
         listener: (context, state) {

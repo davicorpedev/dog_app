@@ -46,7 +46,7 @@ void main() {
             ),
           ).thenAnswer((_) async => http.Response('[]', 200));
 
-          await apiRequester.request(
+          await apiRequester.get(
             path: path,
             queryParameters: {jsonKey: jsonValue},
           );
@@ -76,7 +76,7 @@ void main() {
             (_) async => http.Response('[{"$jsonKey": "$jsonValue"}]', 200),
           );
 
-          final result = await apiRequester.request(path: path);
+          final result = await apiRequester.get(path: path);
 
           expect(
             result.body,
@@ -100,7 +100,7 @@ void main() {
             ),
           ).thenAnswer((_) async => http.Response('[]', 404));
 
-          final call = apiRequester.request(path: path);
+          final call = apiRequester.get(path: path);
 
           expect(
             () => call,

@@ -1,4 +1,5 @@
 import 'package:dog_app/application/pages/random_dog/random_dog_bloc.dart';
+import 'package:dog_app/presentation/utils/map_failure_to_message.dart';
 import 'package:dog_app/presentation/widgets/breed_info_layout.dart';
 import 'package:dog_app/presentation/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class RandomDogDetailBody extends StatelessWidget {
               ),
             );
           } else if (state is RandomDogErrorState) {
-            return Center(child: Text(state.message));
+            return Center(child: Text(mapFailureToMessage(state.failure)));
           }
 
           return const Center(child: CustomCircularProgressIndicator());

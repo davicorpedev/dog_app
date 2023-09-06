@@ -2,7 +2,7 @@ import 'package:dog_app/data/error/exceptions.dart';
 import 'package:http/http.dart' as http;
 
 abstract class ApiRequester {
-  Future<http.Response> request({
+  Future<http.Response> get({
     required String path,
     Map<String, String>? queryParameters = const {},
   });
@@ -25,7 +25,7 @@ class HttpApiRequester extends ApiRequester {
         _apiKey = apiKey;
 
   @override
-  Future<http.Response> request({
+  Future<http.Response> get({
     required String path,
     Map<String, String>? queryParameters = const {},
   }) async {

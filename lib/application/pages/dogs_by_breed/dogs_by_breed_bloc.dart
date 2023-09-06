@@ -36,7 +36,7 @@ class DogsByBreedBloc extends Bloc<DogsByBreedEvent, DogsByBreedState> {
         emit(DogsByBreedLoadedState(dogs: dogs));
       },
       error: (failure) {
-        emit(DogsByBreedErrorState(message: mapFailureToMessage(failure)));
+        emit(DogsByBreedErrorState(failure: failure));
       },
     );
   }

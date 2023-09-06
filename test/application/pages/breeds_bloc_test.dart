@@ -66,7 +66,7 @@ void main() {
       build: () => BreedsBloc(repository: repository),
       expect: () => [
         const BreedsLoadingState(),
-        const BreedsErrorState(message: serverFailureMessage),
+        BreedsErrorState(failure: ServerFailure()),
       ],
     );
   });

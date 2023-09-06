@@ -2,12 +2,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dog_app/application/pages/download_image/download_image_cubit.dart';
 import 'package:dog_app/domain/entities/result.dart';
 import 'package:dog_app/domain/error/failures.dart';
-import 'package:dog_app/domain/repositories/url_downloader_repository.dart';
+import 'package:dog_app/domain/repositories/download_image_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockUrlDownloaderRepository extends Mock
-    implements UrlDownloaderRepository {}
+    implements DownloadImageRepository {}
 
 void main() {
   late MockUrlDownloaderRepository repository;

@@ -84,7 +84,7 @@ void main() {
       ),
       expect: () => [
         const DogsByBreedLoadingState(),
-        const DogsByBreedErrorState(message: serverFailureMessage),
+        DogsByBreedErrorState(failure: ServerFailure()),
       ],
     );
   });

@@ -1,20 +1,20 @@
 import 'package:dog_app/domain/entities/result.dart';
 import 'package:dog_app/domain/error/failures.dart';
-import 'package:dog_app/domain/repositories/url_downloader_repository.dart';
-import 'package:dog_app/domain/utils/dog_image_downloader.dart';
+import 'package:dog_app/domain/repositories/download_image_repository.dart';
+import 'package:dog_app/domain/utils/image_downloader.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockDogImageDownloader extends Mock implements DogImageDownloader {}
+class MockDogImageDownloader extends Mock implements ImageDownloader {}
 
 void main() {
   late MockDogImageDownloader imageDownloader;
-  late UrlDownloaderRepository repository;
+  late DownloadImageRepository repository;
 
   setUp(() {
     imageDownloader = MockDogImageDownloader();
-    repository = UrlDownloaderRepositoryImpl(imageDownloader: imageDownloader);
+    repository = DownloadImageRepositoryImpl(imageDownloader: imageDownloader);
   });
 
   group(
@@ -25,7 +25,7 @@ void main() {
         () async {
           when(() => imageDownloader.download(any())).thenAnswer(
             // ignore: avoid_returning_null_for_void
-            (_) async => null,
+            (_) async => true,
           );
 
           await repository.download('url');
@@ -39,7 +39,7 @@ void main() {
         () async {
           when(() => imageDownloader.download(any())).thenAnswer(
             // ignore: avoid_returning_null_for_void
-            (_) async => null,
+            (_) async => true,
           );
 
           final result = await repository.download('url');
@@ -53,6 +53,23 @@ void main() {
 
       test(
         'should return InvalidUrlFailure if the image has NOT been downloaded',
+        () async {
+          when(() => imageDownloader.download(any())).thenAnswer(
+            // ignore: avoid_returning_null_for_void
+            (_) async => false,
+          );
+
+          final result = await repository.download('url');
+
+          expect(
+            result,
+            Result<bool>.error(InvalidUrlFailure()),
+          );
+        },
+      );
+
+      test(
+        'should return InvalidUrlFailure if an error has occurred while downloading',
         () async {
           when(() => imageDownloader.download(any())).thenThrow(
             PlatformException(code: '1'),

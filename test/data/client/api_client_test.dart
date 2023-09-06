@@ -39,7 +39,7 @@ void main() {
 
     void mockGetBreedsSuccess() {
       when(
-        () => mockApiRequester.request(path: any(named: 'path')),
+        () => mockApiRequester.get(path: any(named: 'path')),
       ).thenAnswer(
         (_) async => http.Response(
           json.decode(fixture('breed_list.json')),
@@ -56,7 +56,7 @@ void main() {
         apiClient.getBreeds();
 
         verify(
-          () => mockApiRequester.request(path: 'breeds'),
+          () => mockApiRequester.get(path: 'breeds'),
         ).called(1);
       },
     );
@@ -75,7 +75,7 @@ void main() {
     test(
       'should throw a ServerException when the response fails',
       () async {
-        when(() => mockApiRequester.request(path: any(named: 'path')))
+        when(() => mockApiRequester.get(path: any(named: 'path')))
             .thenThrow(ServerException());
 
         final call = apiClient.getBreeds();
@@ -106,7 +106,7 @@ void main() {
 
     void mockGetDogsByBreedSuccess() {
       when(
-        () => mockApiRequester.request(
+        () => mockApiRequester.get(
           path: any(named: 'path'),
           queryParameters: any(named: 'queryParameters'),
         ),
@@ -126,7 +126,7 @@ void main() {
         apiClient.getDogsByBreed(tBreedID);
 
         verify(
-          () => mockApiRequester.request(
+          () => mockApiRequester.get(
             path: 'images/search',
             queryParameters: {
               'limit': '30',
@@ -152,7 +152,7 @@ void main() {
       'should throw a ServerException when request fails',
       () {
         when(
-          () => mockApiRequester.request(
+          () => mockApiRequester.get(
             path: any(named: 'path'),
             queryParameters: any(named: 'queryParameters'),
           ),
@@ -181,7 +181,7 @@ void main() {
     );
 
     void mockGetRandomDogSuccess() {
-      when(() => mockApiRequester.request(path: any(named: 'path'))).thenAnswer(
+      when(() => mockApiRequester.get(path: any(named: 'path'))).thenAnswer(
         (_) async => http.Response(
           json.decode(fixture('dog_list.json')),
           200,
@@ -197,7 +197,7 @@ void main() {
         apiClient.getRandomDog();
 
         verify(
-          () => mockApiRequester.request(path: 'images/search'),
+          () => mockApiRequester.get(path: 'images/search'),
         ).called(1);
       },
     );
@@ -217,7 +217,7 @@ void main() {
       'should throw ServerException when the request fails',
       () async {
         when(
-          () => mockApiRequester.request(path: any(named: 'path')),
+          () => mockApiRequester.get(path: any(named: 'path')),
         ).thenThrow(ServerException());
 
         final call = apiClient.getRandomDog;
@@ -229,8 +229,7 @@ void main() {
     test(
       'should throw DogNotExistsException when the request returns an empty JSON',
       () async {
-        when(() => mockApiRequester.request(path: any(named: 'path')))
-            .thenAnswer(
+        when(() => mockApiRequester.get(path: any(named: 'path'))).thenAnswer(
           (_) async => http.Response('[]', 200),
         );
 

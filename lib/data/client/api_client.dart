@@ -22,7 +22,7 @@ class LiveApiClient extends ApiClient {
 
   @override
   Future<List<BreedInfoModel>> getBreeds() async {
-    final response = await _apiRequester.request(path: 'breeds');
+    final response = await _apiRequester.get(path: 'breeds');
 
     final decodedResponse = json.decode(response.body);
 
@@ -33,7 +33,7 @@ class LiveApiClient extends ApiClient {
 
   @override
   Future<List<DogModel>> getDogsByBreed(ID<Breed> id) async {
-    final response = await _apiRequester.request(
+    final response = await _apiRequester.get(
       path: 'images/search',
       queryParameters: {
         'limit': '30',
@@ -50,7 +50,7 @@ class LiveApiClient extends ApiClient {
 
   @override
   Future<DogModel> getRandomDog() async {
-    final response = await _apiRequester.request(path: 'images/search');
+    final response = await _apiRequester.get(path: 'images/search');
 
     final decodedResponse = json.decode(response.body);
 
