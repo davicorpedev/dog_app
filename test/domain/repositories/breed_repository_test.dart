@@ -1,4 +1,3 @@
-import 'package:dog_app/data/datasources/breed_data_source.dart';
 import 'package:dog_app/data/error/exceptions.dart';
 import 'package:dog_app/data/models/breed_info_model.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
@@ -9,20 +8,19 @@ import 'package:dog_app/domain/repositories/breed_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../data/utils/mock_api_client.dart';
 import '../utils/mock_network_info.dart';
-
-class MockBreedDataSource extends Mock implements BreedDataSource {}
 
 void main() {
   late MockNetworkInfo networkInfo;
-  late MockBreedDataSource dataSource;
+  late MockApiClient apiClient;
   late BreedRepository repository;
 
   setUp(() {
     networkInfo = MockNetworkInfo();
-    dataSource = MockBreedDataSource();
+    apiClient = MockApiClient();
     repository = BreedRepositoryImpl(
-      dataSource: dataSource,
+      apiClient: apiClient,
       networkInfo: networkInfo,
     );
   });
@@ -48,7 +46,7 @@ void main() {
         () {
           test('should check if the device is online', () {
             networkInfo.runTestsOnline();
-            when(() => dataSource.getBreeds()).thenAnswer(
+            when(() => apiClient.getBreeds()).thenAnswer(
               (_) async => tBreedModelList,
             );
 
@@ -63,13 +61,13 @@ void main() {
         'should return data when the request is successful',
         () async {
           networkInfo.runTestsOnline();
-          when(() => dataSource.getBreeds()).thenAnswer(
+          when(() => apiClient.getBreeds()).thenAnswer(
             (_) async => tBreedModelList,
           );
 
           final result = await repository.getBreeds();
 
-          verify(() => dataSource.getBreeds()).called(1);
+          verify(() => apiClient.getBreeds()).called(1);
           expect(
             result,
             Result<List<BreedInfo>>.success(tBreedList),
@@ -81,11 +79,11 @@ void main() {
         'should return ServerFailure when the request has failed',
         () async {
           networkInfo.runTestsOnline();
-          when(() => dataSource.getBreeds()).thenThrow(ServerException());
+          when(() => apiClient.getBreeds()).thenThrow(ServerException());
 
           final result = await repository.getBreeds();
 
-          verify(() => dataSource.getBreeds()).called(1);
+          verify(() => apiClient.getBreeds()).called(1);
 
           expect(
             result,
@@ -101,7 +99,7 @@ void main() {
 
           final result = await repository.getBreeds();
 
-          verifyNever(() => dataSource.getBreeds()).called(0);
+          verifyNever(() => apiClient.getBreeds()).called(0);
           expect(
             result,
             Result<List<BreedInfo>>.error(NetworkFailure()),

@@ -1,3 +1,4 @@
+import 'package:dog_app/presentation/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 
 class CustomCachedNetworkImage extends StatelessWidget {
@@ -10,13 +11,6 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*return CachedNetworkImage(
-      imageUrl: imageURL,
-      placeholder: (context, url) => const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Center(child: CircularProgressIndicator()),
-      ),
-    );*/
     return Image.network(
       imageURL,
       loadingBuilder: (_, child, loadingProgress) {
@@ -24,7 +18,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
         return const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Center(child: CircularProgressIndicator()),
+          child: Center(child: CustomCircularProgressIndicator()),
         );
       },
     );

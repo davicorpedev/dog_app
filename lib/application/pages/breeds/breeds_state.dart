@@ -25,10 +25,10 @@ class BreedsLoadedState extends BreedsState {
 }
 
 class BreedsErrorState extends BreedsState {
-  final String message;
+  final Failure failure;
 
-  const BreedsErrorState({required this.message});
+  const BreedsErrorState({required this.failure});
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [failure];
 }

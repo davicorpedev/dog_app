@@ -1,5 +1,5 @@
-import 'package:dog_app/domain/error/failures.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
+import 'package:dog_app/domain/error/failures.dart';
 import 'package:dog_app/domain/repositories/breed_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +31,7 @@ class BreedsBloc extends Bloc<BreedsEvent, BreedsState> {
         emit(BreedsLoadedState(breeds: breeds));
       },
       error: (failure) {
-        emit(BreedsErrorState(message: mapFailureToMessage(failure)));
+        emit(BreedsErrorState(failure: failure));
       },
     );
   }

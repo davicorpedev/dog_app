@@ -1,4 +1,3 @@
-import 'package:dog_app/data/datasources/dog_data_source.dart';
 import 'package:dog_app/data/error/exceptions.dart';
 import 'package:dog_app/data/models/dog_breed_model.dart';
 import 'package:dog_app/data/models/dog_model.dart';
@@ -11,21 +10,20 @@ import 'package:dog_app/domain/repositories/dog_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../data/utils/mock_api_client.dart';
 import '../utils/mock_network_info.dart';
-
-class MockDogDataSource extends Mock implements DogDataSource {}
 
 void main() {
   late MockNetworkInfo networkInfo;
-  late MockDogDataSource dataSource;
+  late MockApiClient apiClient;
   late DogRepository repository;
 
   setUp(() {
     networkInfo = MockNetworkInfo();
-    dataSource = MockDogDataSource();
+    apiClient = MockApiClient();
     repository = DogRepositoryImpl(
       networkInfo: networkInfo,
-      dataSource: dataSource,
+      apiClient: apiClient,
     );
   });
 
@@ -58,7 +56,7 @@ void main() {
       'should check if the device is online',
       () {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getDogsByBreed(tBreedID)).thenAnswer(
+        when(() => apiClient.getDogsByBreed(tBreedID)).thenAnswer(
           (_) async => tDogModelList,
         );
 
@@ -72,13 +70,13 @@ void main() {
       'should return data when the call is successful',
       () async {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getDogsByBreed(tBreedID)).thenAnswer(
+        when(() => apiClient.getDogsByBreed(tBreedID)).thenAnswer(
           (_) async => tDogModelList,
         );
 
         final result = await repository.getDogsByBreed(tBreedID);
 
-        verify(() => dataSource.getDogsByBreed(tBreedID)).called(1);
+        verify(() => apiClient.getDogsByBreed(tBreedID)).called(1);
         expect(
           result,
           Result<List<Dog>>.success(tDogList),
@@ -90,13 +88,13 @@ void main() {
       'should return a ServerFailure when the request has failed',
       () async {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getDogsByBreed(tBreedID)).thenThrow(
+        when(() => apiClient.getDogsByBreed(tBreedID)).thenThrow(
           ServerException(),
         );
 
         final result = await repository.getDogsByBreed(tBreedID);
 
-        verify(() => dataSource.getDogsByBreed(tBreedID)).called(1);
+        verify(() => apiClient.getDogsByBreed(tBreedID)).called(1);
         expect(
           result,
           Result<List<Dog>>.error(ServerFailure()),
@@ -111,7 +109,7 @@ void main() {
 
         final result = await repository.getDogsByBreed(tBreedID);
 
-        verifyNever(() => dataSource.getDogsByBreed(tBreedID)).called(0);
+        verifyNever(() => apiClient.getDogsByBreed(tBreedID)).called(0);
         expect(
           result,
           Result<List<Dog>>.error(NetworkFailure()),
@@ -141,7 +139,7 @@ void main() {
 
       test('should check is the device is online', () {
         networkInfo.runTestsOnline();
-        when(() => dataSource.getRandomDog()).thenAnswer(
+        when(() => apiClient.getRandomDog()).thenAnswer(
           (_) async => tDogModel,
         );
 
@@ -154,13 +152,13 @@ void main() {
         'should return a random Dog when the call is successful',
         () async {
           networkInfo.runTestsOnline();
-          when(() => dataSource.getRandomDog()).thenAnswer(
+          when(() => apiClient.getRandomDog()).thenAnswer(
             (_) async => tDogModel,
           );
 
           final result = await repository.getRandomDog();
 
-          verify(() => dataSource.getRandomDog()).called(1);
+          verify(() => apiClient.getRandomDog()).called(1);
           expect(
             result,
             Result<Dog>.success(tDog),
@@ -172,7 +170,7 @@ void main() {
         'should return a ServerFailure when the request is unsuccessful',
         () async {
           networkInfo.runTestsOnline();
-          when(() => dataSource.getRandomDog()).thenThrow(
+          when(() => apiClient.getRandomDog()).thenThrow(
             ServerException(),
           );
 
@@ -189,7 +187,7 @@ void main() {
         'should return a DogNotExistsFailure when the request does not return a Dog',
         () async {
           networkInfo.runTestsOnline();
-          when(() => dataSource.getRandomDog()).thenThrow(
+          when(() => apiClient.getRandomDog()).thenThrow(
             DogNotExistsException(),
           );
 
@@ -209,7 +207,7 @@ void main() {
 
           final result = await repository.getRandomDog();
 
-          verifyNever(() => dataSource.getRandomDog()).called(0);
+          verifyNever(() => apiClient.getRandomDog()).called(0);
           expect(
             result,
             Result<Dog>.error(NetworkFailure()),

@@ -25,10 +25,10 @@ class RandomDogLoadedState extends RandomDogState {
 }
 
 class RandomDogErrorState extends RandomDogState {
-  final String message;
+  final Failure failure;
 
-  const RandomDogErrorState({required this.message});
+  const RandomDogErrorState({required this.failure});
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [failure];
 }

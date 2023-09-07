@@ -18,6 +18,7 @@ In order to execute this project you will need to create a new file on config/ n
 
 - Image Performance
 - UI Redisign 
+- 100% Test Coverage
 
 ## Thanks to:
 

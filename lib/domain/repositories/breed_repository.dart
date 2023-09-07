@@ -1,4 +1,4 @@
-import 'package:dog_app/data/datasources/breed_data_source.dart';
+import 'package:dog_app/data/client/api_client.dart';
 import 'package:dog_app/data/error/exceptions.dart';
 import 'package:dog_app/domain/entities/breed_info.dart';
 import 'package:dog_app/domain/entities/result.dart';
@@ -11,13 +11,13 @@ abstract class BreedRepository {
 
 class BreedRepositoryImpl extends BreedRepository {
   final NetworkInfo _networkInfo;
-  final BreedDataSource _dataSource;
+  final ApiClient _apiClient;
 
   BreedRepositoryImpl({
     required NetworkInfo networkInfo,
-    required BreedDataSource dataSource,
+    required ApiClient apiClient,
   })  : _networkInfo = networkInfo,
-        _dataSource = dataSource;
+        _apiClient = apiClient;
 
   List<BreedInfo> _cachedBreeds = [];
 
@@ -33,7 +33,7 @@ class BreedRepositoryImpl extends BreedRepository {
   Future<Result<List<BreedInfo>>> _getBreedsFromDataSource() async {
     if (await _networkInfo.isConnected) {
       try {
-        final result = await _dataSource.getBreeds();
+        final result = await _apiClient.getBreeds();
 
         _cacheBreeds(result);
 
