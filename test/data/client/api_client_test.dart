@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dog_app/data/client/api_client.dart';
 import 'package:dog_app/data/client/api_requester.dart';
 import 'package:dog_app/data/error/exceptions.dart';
@@ -42,7 +40,7 @@ void main() {
         () => mockApiRequester.get(path: any(named: 'path')),
       ).thenAnswer(
         (_) async => http.Response(
-          json.decode(fixture('breed_list.json')),
+          fixture('breed_list.json'),
           200,
         ),
       );
@@ -112,7 +110,7 @@ void main() {
         ),
       ).thenAnswer(
         (_) async => http.Response(
-          json.decode(fixture('dog_list.json')),
+          fixture('dog_list.json'),
           200,
         ),
       );
@@ -183,7 +181,7 @@ void main() {
     void mockGetRandomDogSuccess() {
       when(() => mockApiRequester.get(path: any(named: 'path'))).thenAnswer(
         (_) async => http.Response(
-          json.decode(fixture('dog_list.json')),
+          fixture('dog_list.json'),
           200,
         ),
       );

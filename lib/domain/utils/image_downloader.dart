@@ -1,7 +1,5 @@
 import 'package:background_downloader/background_downloader.dart';
 
-// TODO: check this functionality
-
 abstract class ImageDownloader {
   Future<bool> download(String url);
 }
@@ -15,13 +13,15 @@ class ImageDownloaderImpl implements ImageDownloader {
 
   @override
   Future<bool> download(String url) async {
-    final task = DownloadTask(url: url);
+    final task = await DownloadTask(url: url).withSuggestedFilename(
+      unique: true,
+    );
 
     final result = await _downloader.download(task);
 
-    await FileDownloader().moveToSharedStorage(
+    await _downloader.moveToSharedStorage(
       task,
-      SharedStorage.images,
+      SharedStorage.downloads,
     );
 
     return result.status == TaskStatus.complete;
